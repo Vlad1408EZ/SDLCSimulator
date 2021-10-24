@@ -30,6 +30,7 @@ namespace SDLCSimulator_BackEnd
         {
 
             services.AddControllers().AddFluentValidation();
+            services.AddAppCors();
             services.AddMyJwtBearer(Configuration);
             services.AddSwaggerGen(c =>
             {
