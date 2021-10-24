@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
+using SDLCSimulator_BackEnd.Extensions;
 
 namespace SDLCSimulator_BackEnd
 {
@@ -27,7 +29,8 @@ namespace SDLCSimulator_BackEnd
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
+            services.AddMyJwtBearer(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SDLCSimulator_BackEnd", Version = "v1" });
