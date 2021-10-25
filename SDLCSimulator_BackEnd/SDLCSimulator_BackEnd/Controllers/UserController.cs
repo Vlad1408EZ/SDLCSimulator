@@ -23,7 +23,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <summary>
         /// Login user.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">Input authentication model</param>
         /// <returns>AuthenticateResponseModel</returns>
         [HttpPost("Login")]
         [ProducesResponseType(typeof(AuthenticateResponseModel), StatusCodes.Status200OK)]
