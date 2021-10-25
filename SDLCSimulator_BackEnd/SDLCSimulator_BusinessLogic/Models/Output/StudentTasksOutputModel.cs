@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using SDLCSimulator_Data.Enums;
-using SDLCSimulator_Data.JsonTaskModels;
+﻿using SDLCSimulator_Data.Enums;
+using System.Collections.Generic;
 
 namespace SDLCSimulator_BusinessLogic.Models.Output
 {
@@ -18,6 +17,6 @@ namespace SDLCSimulator_BusinessLogic.Models.Output
         public string TeacherLastName { get; set; }
 
         public List<StudentTaskResultOutputModel> StudentsTaskResults { get; set; } =
-            new ();
+            new();
     }
 }
