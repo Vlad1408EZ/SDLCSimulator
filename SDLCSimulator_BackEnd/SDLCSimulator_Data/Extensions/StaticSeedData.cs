@@ -27,7 +27,7 @@ namespace SDLCSimulator_Data.Extensions
                 .HasData(CreateGroupTeacher(1,2),CreateGroupTeacher(2,2));
 
             modelBuilder.Entity<Task>()
-                .HasData(CreateTask(1, TaskTypeEnum.DragAndDrop, DifficultyEnum.Medium, ErrorRateEnum.MediumErrorRate,
+                .HasData(CreateTask(1, TaskTypeEnum.DragAndDrop, DifficultyEnum.Medium, MaxGradeEnum.MediumGrade, ErrorRateEnum.MediumErrorRate,
                     "Вимоги до системи роботи магазину ювелірних виробів",2));
 
             modelBuilder.Entity<GroupTask>()
@@ -49,13 +49,14 @@ namespace SDLCSimulator_Data.Extensions
             return new() { Id = id, FirstName = firstName, LastName = lastName, Email = email, Password = password, Role = role };
         }
 
-        private static Task CreateTask(int id, TaskTypeEnum type, DifficultyEnum difficulty, ErrorRateEnum errorRate,
+        private static Task CreateTask(int id, TaskTypeEnum type, DifficultyEnum difficulty, MaxGradeEnum maxGrade, ErrorRateEnum errorRate,
             string topic, int teacherId)
         {
             return new()
             {
                 Id = id,Type = type, Difficulty = difficulty,
                 ErrorRate = errorRate,
+                MaxGrade = maxGrade,
                 Topic = topic, Description = CreateJsonTaskDescription(),
                 Standard = CreateJsonTaskStandard(),
                 TeacherId = teacherId

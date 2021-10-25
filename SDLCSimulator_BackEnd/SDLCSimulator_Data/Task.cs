@@ -13,7 +13,6 @@ namespace SDLCSimulator_Data
         public DifficultyEnum Difficulty { get; set; }
         public MaxGradeEnum MaxGrade { get; set; }
         public ErrorRateEnum ErrorRate { get; set; }
-        [MaxLength(50)]
         public string Topic { get; set; }
         public string Description { get; set; }
         public string Standard { get; set; }
