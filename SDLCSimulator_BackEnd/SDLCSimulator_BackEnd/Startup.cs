@@ -33,6 +33,8 @@ namespace SDLCSimulator_BackEnd
             services.AddAppCors();
             services.AddMyJwtBearer(Configuration);
             services.AddAppDbContext(Configuration);
+            services.AddAppRepositories();
+            services.AddAppServices();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SDLCSimulator_BackEnd", Version = "v1" });
