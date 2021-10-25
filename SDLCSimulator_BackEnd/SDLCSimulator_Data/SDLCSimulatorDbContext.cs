@@ -27,6 +27,7 @@ namespace SDLCSimulator_Data
         {
             modelBuilder.AddDbRelations();
             modelBuilder.SetDbPrimaryKeys();
+            modelBuilder.AddSeedData();
         }
     }
 }
