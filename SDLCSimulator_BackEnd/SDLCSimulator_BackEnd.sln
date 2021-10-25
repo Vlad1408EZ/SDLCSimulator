@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_BackEnd", "SDLCSimulator_BackEnd\SDLCSimulator_BackEnd.csproj", "{90C4BD6B-AFD3-44B2-BE8B-446210769F9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_BusinessLogic", "SDLCSimulator_BusinessLogic\SDLCSimulator_BusinessLogic.csproj", "{7C035BE2-ED71-403A-A598-C5618DB8322C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_BusinessLogic", "SDLCSimulator_BusinessLogic\SDLCSimulator_BusinessLogic.csproj", "{7C035BE2-ED71-403A-A598-C5618DB8322C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_Data", "SDLCSimulator_Data\SDLCSimulator_Data.csproj", "{95E1F05E-7B2B-4A18-98B5-90200296A641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7C035BE2-ED71-403A-A598-C5618DB8322C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C035BE2-ED71-403A-A598-C5618DB8322C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C035BE2-ED71-403A-A598-C5618DB8322C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E1F05E-7B2B-4A18-98B5-90200296A641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E1F05E-7B2B-4A18-98B5-90200296A641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E1F05E-7B2B-4A18-98B5-90200296A641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E1F05E-7B2B-4A18-98B5-90200296A641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
