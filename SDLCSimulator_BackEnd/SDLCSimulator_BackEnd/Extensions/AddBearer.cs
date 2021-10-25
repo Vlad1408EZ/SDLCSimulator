@@ -11,6 +11,7 @@ namespace SDLCSimulator_BackEnd.Extensions
     {
         public static void AddMyJwtBearer(this IServiceCollection collection, IConfiguration configuration)
         {
+            collection.Configure<JwtConfig>(configuration.GetSection("Jwt"));
             var jwtConfig = new JwtConfig();
             configuration.GetSection("Jwt").Bind(jwtConfig);
             collection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

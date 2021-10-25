@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.General;
 using SDLCSimulator_Repository.Interfaces;
@@ -32,7 +28,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             var token = _authService.GenerateWebTokenForUser(user);
 
-            return new AuthenticateResponseModel(user, token);
+            return new AuthenticateResponseModel(user, token);  
         }
     }
 }

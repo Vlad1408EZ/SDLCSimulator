@@ -10,6 +10,8 @@ namespace SDLCSimulator_BackEnd.Extensions
         {
             collection.AddScoped<IUserService,UserService>();
             collection.AddScoped<IAuthService,AuthService>();
+            collection.AddScoped<IDifficultyService,DifficultyService>();
+            collection.AddScoped<ITypeService,TypeService>();
         }
     }
 }
