@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using SDLCSimulator_BusinessLogic.Helpers;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.Input;
 using SDLCSimulator_BusinessLogic.Models.Output;
-using SDLCSimulator_Data;
 using SDLCSimulator_Data.Enums;
-using SDLCSimulator_Data.JsonTaskModels;
 using SDLCSimulator_Repository.Interfaces;
-using TaskModel = SDLCSimulator_Data.Task;
 
 namespace SDLCSimulator_BusinessLogic.Services
 {
@@ -57,7 +51,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Topic = t.Topic,
                 Description = t.Description,
                 Standard = t.Standard,
-                ErrorRate = GetErrorRate(t.ErrorRate),
+                ErrorRate = ErrorRateGetter.GetErrorRate(t.ErrorRate),
                 MaxGrade = (int) t.MaxGrade,
                 TeacherFirstName = t.Teacher.FirstName,
                 TeacherLastName = t.Teacher.LastName,
@@ -74,18 +68,5 @@ namespace SDLCSimulator_BusinessLogic.Services
             return result;
         }
 
-        private static decimal GetErrorRate(ErrorRateEnum errorRate)
-        {
-            return errorRate switch
-            {
-                ErrorRateEnum.EasyErrorRate =>
-                    0.5m,
-                ErrorRateEnum.MediumErrorRate =>
-                    1.0m,
-                ErrorRateEnum.HardErrorRate =>
-                    1.5m,
-                _ => 0
-            };
-        }
     }
 }

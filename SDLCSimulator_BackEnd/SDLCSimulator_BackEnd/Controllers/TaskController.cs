@@ -31,20 +31,21 @@ namespace SDLCSimulator_BackEnd.Controllers
         [HttpGet("StudentTasks")]
         //[Authorize(Roles = "Student")]
         [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
-        public async Task<List<StudentTasksOutputModel>> GetFilteredTasksWithTaskResultsForStudentAsync([FromQuery] TaskForStudentFilterInput filterInput)
+        public async Task<IActionResult> GetFilteredTasksWithTaskResultsForStudentAsync([FromQuery] TaskForStudentFilterInput filterInput)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "GroupId")?.Value, out int groupId);
             if (!success)
-                groupId = 1;
+                return BadRequest("The group id is not valid");
 
             success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
             if (!success)
-                userId = 1;
+                return BadRequest("The user id is not valid");
+
             var result =
                     await _taskService.GetFilteredTasksWithTaskResultsForStudentAsync(filterInput, groupId, userId);
 
-            return result;
+            return Ok(result);
         }
     }
 }
