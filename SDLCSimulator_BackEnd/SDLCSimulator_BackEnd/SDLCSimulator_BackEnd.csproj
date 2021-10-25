@@ -16,15 +16,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.13.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SDLCSimulator_BusinessLogic\SDLCSimulator_BusinessLogic.csproj" />
     <ProjectReference Include="..\SDLCSimulator_Data\SDLCSimulator_Data.csproj" />
+    <ProjectReference Include="..\SDLCSimulator_Repository\SDLCSimulator_Repository.csproj" />
   </ItemGroup>
 
 </Project>
