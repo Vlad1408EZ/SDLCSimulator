@@ -29,7 +29,6 @@ namespace SDLCSimulator_BackEnd.Controllers
         [ProducesResponseType(typeof(AuthenticateResponseModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> LoginAsync(AuthenticateRequestModel model)
         {
-
             try
             {
                 var response = await _userService.LoginAsync(model);

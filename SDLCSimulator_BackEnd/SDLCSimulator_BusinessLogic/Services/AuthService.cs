@@ -29,7 +29,8 @@ namespace SDLCSimulator_BusinessLogic.Services
             {
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.Role,user.Role.ToString()),
-                new Claim("UserId",user.Id.ToString())
+                new Claim("UserId",user.Id.ToString()),
+                new Claim("GroupId",user.GroupId.HasValue ? user.GroupId.Value.ToString() : "0")
             };
 
             var token = new JwtSecurityToken(
