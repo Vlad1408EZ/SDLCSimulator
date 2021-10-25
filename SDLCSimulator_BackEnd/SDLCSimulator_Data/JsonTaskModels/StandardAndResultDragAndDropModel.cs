@@ -2,7 +2,7 @@
 
 namespace SDLCSimulator_Data.JsonTaskModels
 {
-    public class StandardDragAndDropModel
+    public class StandardAndResultDragAndDropModel
     {
         public Dictionary<string, List<string>> Standard { get; set; }
     }

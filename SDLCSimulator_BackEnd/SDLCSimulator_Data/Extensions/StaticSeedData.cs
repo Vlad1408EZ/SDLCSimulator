@@ -112,7 +112,7 @@ namespace SDLCSimulator_Data.Extensions
                 }
             };
 
-            var standard = new StandardDragAndDropModel() { Standard = dict };
+            var standard = new StandardAndResultDragAndDropModel() { Standard = dict };
 
             return JsonConvert.SerializeObject(standard);
         }
