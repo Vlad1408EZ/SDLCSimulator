@@ -32,6 +32,7 @@ namespace SDLCSimulator_BackEnd
             services.AddControllers().AddFluentValidation();
             services.AddAppCors();
             services.AddMyJwtBearer(Configuration);
+            services.AddAppDbContext(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SDLCSimulator_BackEnd", Version = "v1" });
@@ -47,6 +48,8 @@ namespace SDLCSimulator_BackEnd
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SDLCSimulator_BackEnd v1"));
             }
+
+            app.UseCors("MyAllowSpecificOrigins");
 
             app.UseHttpsRedirection();
 
