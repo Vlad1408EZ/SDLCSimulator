@@ -31,12 +31,12 @@ namespace SDLCSimulator_BackEnd.Controllers
         [ProducesResponseType(typeof(StudentTaskResultOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> SetTaskResultAsync(TaskResultInput model)
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
-            if (!success)
-                return BadRequest("The user id is not valid");
             try
             {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
+                if (!success)
+                    return BadRequest("The user id is not valid");
                 var response = await _taskResultService.SetTaskResultAsync(model,userId);
 
                 return Ok(response);

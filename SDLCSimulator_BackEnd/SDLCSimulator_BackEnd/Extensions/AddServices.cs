@@ -14,6 +14,7 @@ namespace SDLCSimulator_BackEnd.Extensions
             collection.AddScoped<ITypeService,TypeService>();
             collection.AddScoped<ITaskService,TaskService>();
             collection.AddScoped<ITaskResultService,TaskResultService>();
+            collection.AddScoped<IGroupService,GroupService>();
         }
     }
 }

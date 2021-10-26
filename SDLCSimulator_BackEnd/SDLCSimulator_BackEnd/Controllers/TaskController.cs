@@ -33,19 +33,26 @@ namespace SDLCSimulator_BackEnd.Controllers
         [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilteredTasksWithTaskResultsForStudentAsync([FromQuery] TaskForStudentFilterInput filterInput)
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "GroupId")?.Value, out int groupId);
-            if (!success)
-                return BadRequest("The group id is not valid");
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "GroupId")?.Value, out int groupId);
+                if (!success)
+                    return BadRequest("The group id is not valid");
 
-            success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
-            if (!success)
-                return BadRequest("The user id is not valid");
+                success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
+                if (!success)
+                    return BadRequest("The user id is not valid");
 
-            var result =
+                var result =
                     await _taskService.GetFilteredTasksWithTaskResultsForStudentAsync(filterInput, groupId, userId);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
