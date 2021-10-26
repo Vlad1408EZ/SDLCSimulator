@@ -20,5 +20,12 @@ namespace SDLCSimulator_Repository.Repositories
                 .Include(t => t.Teacher)
                 .Include(t => t.TaskResults.Where(tr => tr.StudentId == userId));
         }
+
+        public IQueryable<TaskModel> GetTasksWithTaskResultsForTeacher(int userId)
+        {
+            return GetByCondition(t => t.TeacherId == userId)
+                .Include(t => t.TaskResults).ThenInclude(tr => tr.Student).ThenInclude(s => s.Group)
+                .Include(t => t.GroupTasks).ThenInclude(gt => gt.Group);
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace SDLCSimulator_Repository.Interfaces
     public interface ITaskRepository : IStatelessRepository<TaskModel>
     {
         IQueryable<TaskModel> GetTasksWithTaskResultsForStudent(int groupId,int userId);
+        IQueryable<TaskModel> GetTasksWithTaskResultsForTeacher(int userId);
     }
 }
