@@ -4,7 +4,7 @@ namespace SDLCSimulator_Data.JsonTaskModels
 {
     public class DescriptionDragAndDropModel
     {
-        public List<string> Types { get; set; }
-        public List<string> Requirements { get; set; }
+        public List<string> Columns { get; set; }
+        public List<string> Blocks { get; set; }
     }
 }

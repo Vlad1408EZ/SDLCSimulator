@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SDLCSimulator_Data.Enums;
@@ -75,8 +74,8 @@ namespace SDLCSimulator_Data.Extensions
 
         private static string CreateJsonTaskDescription()
         {
-            var types = new List<string> { "Функціональні","Нефункціональні" };
-            var requirements = new List<string>
+            var columns = new List<string> { "Функціональні","Нефункціональні" };
+            var blocks = new List<string>
             {
                 "Пошук товарів за назвою",
                 "Користувацький інтерфейс має відповідати 10 евристикам графічного інтерфейсу",
@@ -88,7 +87,7 @@ namespace SDLCSimulator_Data.Extensions
                 "Блокування облікового запису у разі підозрілої поведінки"
             };
 
-            var description = new DescriptionDragAndDropModel() { Types = types,Requirements = requirements };
+            var description = new DescriptionDragAndDropModel() { Columns = columns, Blocks = blocks };
 
             return JsonConvert.SerializeObject(description);
         }

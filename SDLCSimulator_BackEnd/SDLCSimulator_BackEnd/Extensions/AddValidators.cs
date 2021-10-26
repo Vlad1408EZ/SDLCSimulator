@@ -10,6 +10,7 @@ namespace SDLCSimulator_BackEnd.Extensions
         public static void AddAppValidators(this IServiceCollection collection)
         {
             collection.AddScoped<IValidator<AuthenticateRequestModel>, AuthenticateRequestModelValidator>();
+            collection.AddScoped<IValidator<ChangePasswordRequestModel>,ChangePasswordRequestModelValidator>();
         }
     }
 }
