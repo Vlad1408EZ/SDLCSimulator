@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.General;
 
@@ -32,8 +34,60 @@ namespace SDLCSimulator_BackEnd.Controllers
             try
             {
                 var response = await _userService.LoginAsync(model);
-                if (response == null)
-                    return BadRequest("Login or password is incorrect");
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Update current user info.
+        /// </summary>
+        /// <param name="model">Current user update model</param>
+        /// <returns>Updated info</returns>
+        [HttpPut("UpdateUserInfo")]
+        //[Authorize]
+        [ProducesResponseType(typeof(UpdateUserInfoModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> UpdateUserInfoAsync(UpdateUserInfoModel model)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
+                if (!success)
+                    return BadRequest("The user id is not valid");
+
+                var response = await _userService.UpdateUserInfoAsync(model,userId);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Change password.
+        /// </summary>
+        /// <param name="model">New password with confirmation</param>
+        /// <returns>true or false</returns>
+        [HttpPost("ChangePassword")]
+        //[Authorize]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        public async Task<IActionResult> ChangePasswordAsync(ChangePasswordRequestModel model)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
+                if (!success)
+                    return BadRequest("The user id is not valid");
+
+                var response = await _userService.ChangePasswordAsync(model,userId);
 
                 return Ok(response);
             }
