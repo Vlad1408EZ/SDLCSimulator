@@ -9,5 +9,8 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
     {
         Task<List<StudentTasksOutputModel>> GetFilteredTasksWithTaskResultsForStudentAsync(
             TaskForStudentFilterInput filterInput,int groupId,int userId);
+
+        Task<List<TeacherTasksOutputModel>> GetFilteredTasksWithTaskResultsForTeacherAsync(
+            TaskForTeacherFilterInput filterInput,int userId);
     }
 }

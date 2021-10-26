@@ -26,7 +26,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <summary>
         /// Get tasks with task results for student.
         /// </summary>
-        /// /// <param name="filterInput">Task filtering</param>
+        /// <param name="filterInput">Task filtering</param>
         /// <returns>Tasks with task results for student.</returns>             
         [HttpGet("StudentTasks")]
         //[Authorize(Roles = "Student")]
@@ -46,6 +46,34 @@ namespace SDLCSimulator_BackEnd.Controllers
 
                 var result =
                     await _taskService.GetFilteredTasksWithTaskResultsForStudentAsync(filterInput, groupId, userId);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get tasks with task results for teacher.
+        /// </summary>
+        /// <param name="filterInput">Task filtering</param>
+        /// <returns>Tasks with task results for teacher.</returns>             
+        [HttpGet("TeacherTasks")]
+        //[Authorize(Roles = "Teacher")]
+        [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFilteredTasksWithTaskResultsForTeacherAsync([FromQuery] TaskForTeacherFilterInput filterInput)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
+                if (!success)
+                    userId = 2;
+
+                var result =
+                    await _taskService.GetFilteredTasksWithTaskResultsForTeacherAsync(filterInput,userId);
 
                 return Ok(result);
             }

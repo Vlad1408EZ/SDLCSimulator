@@ -12,15 +12,15 @@ namespace SDLCSimulator_Data.Extensions
         public static void AddSeedData(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Group>()
-                .HasData(CreateGroup(1,"PZ-41"),CreateGroup(2,"PZ-42"),CreateGroup(3,"PZ-43"),
-                    CreateGroup(4,"PZ-44"),CreateGroup(5,"PZ-45"));
+                .HasData(CreateGroup(1,"ПЗ-41"),CreateGroup(2, "ПЗ-42"),CreateGroup(3, "ПЗ-43"),
+                    CreateGroup(4, "ПЗ-44"),CreateGroup(5, "ПЗ-45"));
 
             modelBuilder.Entity<User>()
-                .HasData(CreateStudent(1,"Ivan","Ivanov","ivan.ivanov.pz.2018@lpnu.ua",
+                .HasData(CreateStudent(1,"Іван","Іванов","ivan.ivanov.pz.2018@lpnu.ua",
                     "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==", RoleEnum.Student,1));
 
             modelBuilder.Entity<User>()
-                .HasData(CreateTeacher(2, "Fomenko", "Andriy", "andriy.fomenko.pz@lpnu.ua",
+                .HasData(CreateTeacher(2, "Фоменко", "Андрій", "andriy.fomenko.pz@lpnu.ua",
                     "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==", RoleEnum.Teacher));
 
             modelBuilder.Entity<GroupTeacher>()
