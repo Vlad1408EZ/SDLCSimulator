@@ -93,13 +93,13 @@ namespace SDLCSimulator_BusinessLogic.Services
                             .Where(tr => tr.Student.LastName.StartsWith(filterInput.LastName)).ToList();
                     });
                 }
-                if (!string.IsNullOrEmpty(filterInput.GroupName))
+                if (filterInput.GroupNames != null)
                 {
-                    tasks = tasks.Where(t => t.GroupTasks.Any(tr => tr.Group.GroupName == filterInput.GroupName)).ToList();
+                    tasks = tasks.Where(t => t.GroupTasks.Any(tr => filterInput.GroupNames.Contains(tr.Group.GroupName))).ToList();
                     tasks.ForEach(t =>
                     {
                         t.TaskResults = t.TaskResults
-                            .Where(tr => tr.Student.Group.GroupName == filterInput.GroupName).ToList();
+                            .Where(tr => filterInput.GroupNames.Contains(tr.Student.Group.GroupName)).ToList();
                     });
                 }
 

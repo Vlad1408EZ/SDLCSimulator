@@ -70,7 +70,7 @@ namespace SDLCSimulator_BackEnd.Controllers
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
                 if (!success)
-                    userId = 2;
+                    return BadRequest("The user id is not valid");
 
                 var result =
                     await _taskService.GetFilteredTasksWithTaskResultsForTeacherAsync(filterInput,userId);
