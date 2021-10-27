@@ -10,8 +10,8 @@ using SDLCSimulator_Data;
 namespace SDLCSimulator_Data.Migrations
 {
     [DbContext(typeof(SDLCSimulatorDbContext))]
-    [Migration("20211025110733_add static seed data")]
-    partial class addstaticseeddata
+    [Migration("20211027080050_Add admin")]
+    partial class Addadmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,27 +39,27 @@ namespace SDLCSimulator_Data.Migrations
                         new
                         {
                             Id = 1,
-                            GroupName = "PZ-41"
+                            GroupName = "ПЗ-41"
                         },
                         new
                         {
                             Id = 2,
-                            GroupName = "PZ-42"
+                            GroupName = "ПЗ-42"
                         },
                         new
                         {
                             Id = 3,
-                            GroupName = "PZ-43"
+                            GroupName = "ПЗ-43"
                         },
                         new
                         {
                             Id = 4,
-                            GroupName = "PZ-44"
+                            GroupName = "ПЗ-44"
                         },
                         new
                         {
                             Id = 5,
-                            GroupName = "PZ-45"
+                            GroupName = "ПЗ-45"
                         });
                 });
 
@@ -153,11 +153,11 @@ namespace SDLCSimulator_Data.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "{\"Types\":[\"Функціональні\",\"Нефункціональні\"],\"Requirements\":[\"Пошук товарів за назвою\",\"Користувацький інтерфейс має відповідати 10 евристикам графічного інтерфейсу\",\"Перегляд вмісту кошику\",\"Вибір способу доставки\",\"Програмний продукт буде пов’язаний з поштовим клієнтом MS Outlook для отримання розсилки електронних повідомлень\",\"З’єднання з сайтом відбувається на основі протоколу HTTPS\",\"Програмний продукт має витримувати мінімум 100 запитів до серверу на секунду\",\"Наявність вбудованого графічного редактору\",\"Наявність сторінки оформлення замовлення реклами\",\"Блокування облікового запису у разі підозрілої поведінки\"]}",
+                            Description = "{\"Columns\":[\"Функціональні\",\"Нефункціональні\"],\"Blocks\":[\"Пошук товарів за назвою\",\"Користувацький інтерфейс має відповідати 10 евристикам графічного інтерфейсу\",\"Перегляд вмісту кошику\",\"Вибір способу доставки\",\"Програмний продукт буде пов’язаний з поштовим клієнтом MS Outlook для отримання розсилки електронних повідомлень\",\"З’єднання з сайтом відбувається на основі протоколу HTTPS\",\"Програмний продукт має витримувати мінімум 100 запитів до серверу на секунду\",\"Наявність вбудованого графічного редактору\",\"Наявність сторінки оформлення замовлення реклами\",\"Блокування облікового запису у разі підозрілої поведінки\"]}",
                             Difficulty = 2,
                             ErrorRate = 1,
                             MaxGrade = 40,
-                            Standard = "{\"Standard\":{\"Функціональні\":[\"Перегляд вмісту кошику\",\"Вибір способу доставки\",\"Пошук товарів за назвою\",\"Наявність сторінки оформлення замовлення реклами\",\"Наявність вбудованого графічного редактору\"],\"Нефункціональні\":[\"З’єднання з сайтом відбувається на основі протоколу HTTPS\",\"Користувацький інтерфейс має відповідати 10 евристикам графічного інтерфейсу\",\"Програмний продукт має витримувати мінімум 100 запитів до серверу на секунду\",\"Блокування облікового запису у разі підозрілої поведінки\",\"Програмний продукт буде пов’язаний з поштовим клієнтом MS Outlook для отримання розсилки електронних повідомлень\"]}}",
+                            Standard = "{\"StandardOrResult\":{\"Функціональні\":[\"Перегляд вмісту кошику\",\"Вибір способу доставки\",\"Пошук товарів за назвою\",\"Наявність сторінки оформлення замовлення реклами\",\"Наявність вбудованого графічного редактору\"],\"Нефункціональні\":[\"З’єднання з сайтом відбувається на основі протоколу HTTPS\",\"Користувацький інтерфейс має відповідати 10 евристикам графічного інтерфейсу\",\"Програмний продукт має витримувати мінімум 100 запитів до серверу на секунду\",\"Блокування облікового запису у разі підозрілої поведінки\",\"Програмний продукт буде пов’язаний з поштовим клієнтом MS Outlook для отримання розсилки електронних повідомлень\"]}}",
                             TeacherId = 2,
                             Topic = "Вимоги до системи роботи магазину ювелірних виробів",
                             Type = 1
@@ -235,21 +235,30 @@ namespace SDLCSimulator_Data.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "ivan.ivanov.pz.2018@lpnu.ua",
-                            FirstName = "Ivan",
+                            Email = "іван.іванов.пз@lpnu.ua",
+                            FirstName = "Іван",
                             GroupId = 1,
-                            LastName = "Ivanov",
+                            LastName = "Іванов",
                             Password = "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==",
                             Role = 0
                         },
                         new
                         {
                             Id = 2,
-                            Email = "andriy.fomenko.pz@lpnu.ua",
-                            FirstName = "Fomenko",
-                            LastName = "Andriy",
+                            Email = "андрій.фоменко.викладач@lpnu.ua",
+                            FirstName = "Андрій",
+                            LastName = "Фоменко",
                             Password = "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==",
                             Role = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "сергій.федецький.адмін@lpnu.ua",
+                            FirstName = "Сергій",
+                            LastName = "Федецький",
+                            Password = "AGiprihD8YNNbQk2w5XdYqNtbOxu8Qly+7gmJloWjaKPdPWSAHIb2SAbMsaRO08e6Q==",
+                            Role = 2
                         });
                 });
 
@@ -258,13 +267,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany("GroupTasks")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.Task", "Task")
                         .WithMany("GroupTasks")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -277,13 +286,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany("GroupTeachers")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.User", "Teacher")
                         .WithMany("GroupTeachers")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -296,7 +305,7 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.User", "Teacher")
                         .WithMany("Tasks")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Teacher");
@@ -307,13 +316,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.User", "Student")
                         .WithMany("TaskResults")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.Task", "Task")
                         .WithMany("TaskResults")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Student");
@@ -326,7 +335,7 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany()
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Group");
                 });

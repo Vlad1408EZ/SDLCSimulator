@@ -10,8 +10,8 @@ using SDLCSimulator_Data;
 namespace SDLCSimulator_Data.Migrations
 {
     [DbContext(typeof(SDLCSimulatorDbContext))]
-    [Migration("20211025084653_Initial Db Creation")]
-    partial class InitialDbCreation
+    [Migration("20211027070540_Initial migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,8 +92,7 @@ namespace SDLCSimulator_Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Topic")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -178,13 +177,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany("GroupTasks")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.Task", "Task")
                         .WithMany("GroupTasks")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -197,13 +196,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany("GroupTeachers")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.User", "Teacher")
                         .WithMany("GroupTeachers")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -216,7 +215,7 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.User", "Teacher")
                         .WithMany("Tasks")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Teacher");
@@ -227,13 +226,13 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.User", "Student")
                         .WithMany("TaskResults")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SDLCSimulator_Data.Task", "Task")
                         .WithMany("TaskResults")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Student");
@@ -246,7 +245,7 @@ namespace SDLCSimulator_Data.Migrations
                     b.HasOne("SDLCSimulator_Data.Group", "Group")
                         .WithMany()
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Group");
                 });

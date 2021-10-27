@@ -15,12 +15,16 @@ namespace SDLCSimulator_Data.Extensions
                     CreateGroup(4, "ПЗ-44"),CreateGroup(5, "ПЗ-45"));
 
             modelBuilder.Entity<User>()
-                .HasData(CreateStudent(1,"Іван","Іванов","ivan.ivanov.pz.2018@lpnu.ua",
+                .HasData(CreateStudent(1,"Іван","Іванов","іван.іванов.пз@lpnu.ua",
                     "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==", RoleEnum.Student,1));
 
             modelBuilder.Entity<User>()
-                .HasData(CreateTeacher(2, "Фоменко", "Андрій", "andriy.fomenko.pz@lpnu.ua",
+                .HasData(CreateTeacher(2, "Андрій", "Фоменко", "андрій.фоменко.викладач@lpnu.ua",
                     "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==", RoleEnum.Teacher));
+
+            modelBuilder.Entity<User>()
+                .HasData(CreateAdmin(3, "Сергій", "Федецький", "сергій.федецький.адмін@lpnu.ua",
+                    "AGiprihD8YNNbQk2w5XdYqNtbOxu8Qly+7gmJloWjaKPdPWSAHIb2SAbMsaRO08e6Q==", RoleEnum.Admin));
 
             modelBuilder.Entity<GroupTeacher>()
                 .HasData(CreateGroupTeacher(1,2),CreateGroupTeacher(2,2));
@@ -44,6 +48,11 @@ namespace SDLCSimulator_Data.Extensions
         }
 
         private static User CreateTeacher(int id, string firstName, string lastName, string email, string password, RoleEnum role)
+        {
+            return new() { Id = id, FirstName = firstName, LastName = lastName, Email = email, Password = password, Role = role };
+        }
+
+        private static User CreateAdmin(int id, string firstName, string lastName, string email, string password, RoleEnum role)
         {
             return new() { Id = id, FirstName = firstName, LastName = lastName, Email = email, Password = password, Role = role };
         }

@@ -1,12 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Services;
+using SDLCSimulator_Repository.Interfaces;
 
 namespace SDLCSimulator_BackEnd.Extensions
 {
     public static class AddServices
     {
-        public static void AddAppServices(this IServiceCollection collection)
+        public static void AddAppServices(this IServiceCollection collection, IConfiguration configuration)
         {
             collection.AddScoped<IUserService,UserService>();
             collection.AddScoped<IAuthService,AuthService>();
@@ -15,6 +17,8 @@ namespace SDLCSimulator_BackEnd.Extensions
             collection.AddScoped<ITaskService,TaskService>();
             collection.AddScoped<ITaskResultService,TaskResultService>();
             collection.AddScoped<IGroupService,GroupService>();
+            collection.AddScoped<IEmailService,EmailService>(sp => new EmailService(configuration,
+                sp.GetRequiredService<IUserRepository>()));
         }
     }
 }

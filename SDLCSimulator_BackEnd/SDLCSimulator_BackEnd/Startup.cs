@@ -29,7 +29,7 @@ namespace SDLCSimulator_BackEnd
             services.AddMyJwtBearer(Configuration);
             services.AddAppDbContext(Configuration);
             services.AddAppRepositories();
-            services.AddAppServices();
+            services.AddAppServices(Configuration);
             services.AddAppValidators();
             services.AddSwaggerGen(c =>
             {

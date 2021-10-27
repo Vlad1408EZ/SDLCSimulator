@@ -12,6 +12,7 @@ namespace SDLCSimulator_BackEnd.Extensions
             collection.AddScoped<ITaskRepository, TaskRepository>();
             collection.AddScoped<ITaskResultRepository, TaskResultRepository>();
             collection.AddScoped<IUserRepository, UserRepository>();
+            collection.AddScoped<IGroupTaskRepository,GroupTaskRepository>();
         }
     }
 }

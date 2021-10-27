@@ -2,7 +2,7 @@
 
 namespace SDLCSimulator_Data.Migrations
 {
-    public partial class InitialDbCreation : Migration
+    public partial class Initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,8 +39,7 @@ namespace SDLCSimulator_Data.Migrations
                         name: "FK_User_Group_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Group",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -57,14 +56,13 @@ namespace SDLCSimulator_Data.Migrations
                         name: "FK_GroupTeacher_Group_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Group",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GroupTeacher_User_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +75,7 @@ namespace SDLCSimulator_Data.Migrations
                     Difficulty = table.Column<int>(type: "int", nullable: false),
                     MaxGrade = table.Column<int>(type: "int", nullable: false),
                     ErrorRate = table.Column<int>(type: "int", nullable: false),
-                    Topic = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Topic = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Standard = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TeacherId = table.Column<int>(type: "int", nullable: false)
@@ -90,7 +88,7 @@ namespace SDLCSimulator_Data.Migrations
                         column: x => x.TeacherId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,14 +105,13 @@ namespace SDLCSimulator_Data.Migrations
                         name: "FK_GroupTask_Group_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Group",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GroupTask_Task_TaskId",
                         column: x => x.TaskId,
                         principalTable: "Task",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,14 +134,13 @@ namespace SDLCSimulator_Data.Migrations
                         name: "FK_TaskResult_Task_TaskId",
                         column: x => x.TaskId,
                         principalTable: "Task",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_TaskResult_User_StudentId",
                         column: x => x.StudentId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

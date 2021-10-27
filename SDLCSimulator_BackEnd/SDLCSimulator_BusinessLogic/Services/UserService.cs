@@ -24,7 +24,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             if (user == null || !_authService.VerifyPassword(user.Password, model.Password))
             {
-                throw new InvalidOperationException($"User is not found or password is incorrect");
+                throw new InvalidOperationException($"Користувач не знайдений або введено неправильний пароль");
             }
 
             var token = _authService.GenerateWebTokenForUser(user);
@@ -51,7 +51,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             var user = await _userRepository.GetSingleByConditionAsync(u => u.Id == userId);
             if (user == null || !_authService.VerifyPassword(user.Password, model.OldPassword))
             {
-                throw new InvalidOperationException($"User is not found or password is incorrect");
+                throw new InvalidOperationException($"Користувач не знайдений або введено неправильний пароль");
             }
 
             user.Password = _authService.HashPassword(model.NewPassword);
