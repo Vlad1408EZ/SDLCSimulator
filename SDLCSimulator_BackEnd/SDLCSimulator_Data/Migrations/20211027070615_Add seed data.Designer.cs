@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SDLCSimulator_Data;
 
 namespace SDLCSimulator_Data.Migrations
 {
     [DbContext(typeof(SDLCSimulatorDbContext))]
-    partial class SDLCSimulatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211027070615_Add seed data")]
+    partial class Addseeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,15 +250,6 @@ namespace SDLCSimulator_Data.Migrations
                             LastName = "Фоменко",
                             Password = "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==",
                             Role = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "сергій.федецький.адмін@lpnu.ua",
-                            FirstName = "Сергій",
-                            LastName = "Федецький",
-                            Password = "AGiprihD8YNNbQk2w5XdYqNtbOxu8Qly+7gmJloWjaKPdPWSAHIb2SAbMsaRO08e6Q==",
-                            Role = 2
                         });
                 });
 

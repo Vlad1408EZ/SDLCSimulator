@@ -58,7 +58,7 @@ namespace SDLCSimulator_BackEnd.Controllers
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
                 if (!success)
-                    return BadRequest("The user id is not valid");
+                    return BadRequest("Айді користувача не валідне");
 
                 var response = await _userService.UpdateUserInfoAsync(model,userId);
 
@@ -85,7 +85,7 @@ namespace SDLCSimulator_BackEnd.Controllers
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 bool success = int.TryParse(identity?.Claims.FirstOrDefault(t => t.Type == "UserId")?.Value, out int userId);
                 if (!success)
-                    return BadRequest("The user id is not valid");
+                    return BadRequest("Айді користувача не валідне");
 
                 var response = await _userService.ChangePasswordAsync(model,userId);
 

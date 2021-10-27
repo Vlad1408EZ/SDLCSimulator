@@ -14,7 +14,7 @@ namespace SDLCSimulator_BusinessLogic.Models.Output
         public string Description { get; set; }
         public string Standard { get; set; }
 
-        public List<GroupModel> Groups { get; set; }
+        public List<GroupOutputModel> Groups { get; set; }
 
         public List<TeacherTaskResultOutputModel> TeachersTaskResults { get; set; } =
             new();

@@ -2,20 +2,10 @@
 
 namespace SDLCSimulator_Data.Migrations
 {
-    public partial class addstaticseeddata : Migration
+    public partial class Addseeddata : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Topic",
-                table: "Task",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
-                oldMaxLength: 50,
-                oldNullable: true);
-
             migrationBuilder.InsertData(
                 table: "Group",
                 columns: new[] { "Id", "GroupName" },
@@ -31,7 +21,7 @@ namespace SDLCSimulator_Data.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Email", "FirstName", "GroupId", "LastName", "Password", "Role" },
-                values: new object[] { 2, "andriy.fomenko.pz@lpnu.ua", "Фоменко", null, "Андрій", "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==", 1 });
+                values: new object[] { 2, "андрій.фоменко.викладач@lpnu.ua", "Андрій", null, "Фоменко", "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==", 1 });
 
             migrationBuilder.InsertData(
                 table: "GroupTeacher",
@@ -50,7 +40,7 @@ namespace SDLCSimulator_Data.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Email", "FirstName", "GroupId", "LastName", "Password", "Role" },
-                values: new object[] { 1, "ivan.ivanov.pz.2018@lpnu.ua", "Іван", 1, "Іванов", "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==", 0 });
+                values: new object[] { 1, "іван.іванов.пз@lpnu.ua", "Іван", 1, "Іванов", "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==", 0 });
 
             migrationBuilder.InsertData(
                 table: "GroupTask",
@@ -114,16 +104,6 @@ namespace SDLCSimulator_Data.Migrations
                 table: "User",
                 keyColumn: "Id",
                 keyValue: 2);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Topic",
-                table: "Task",
-                type: "nvarchar(50)",
-                maxLength: 50,
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
         }
     }
 }

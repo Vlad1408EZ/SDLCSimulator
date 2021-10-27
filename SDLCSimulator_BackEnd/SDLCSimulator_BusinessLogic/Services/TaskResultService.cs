@@ -30,7 +30,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             var task = await _taskRepository.GetSingleByConditionAsync(t => t.Id == input.TaskId);
             if (task == null)
             {
-                throw new InvalidOperationException($"Task with id {input.TaskId} is not found");
+                throw new InvalidOperationException($"Завдання з айді {input.TaskId} не знайдено");
             }
             var result = input.Result;
             var standard = JsonConvert.DeserializeObject<StandardAndResultDragAndDropModel>(task.Standard)?.StandardOrResult;
