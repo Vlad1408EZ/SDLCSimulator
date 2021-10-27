@@ -25,7 +25,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             _taskResultRepository = taskResultRepository;
         }
 
-        public async Task<StudentTaskResultOutputModel> SetTaskResultAsync(TaskResultInput input, int userId)
+        public async Task<StudentTaskResultOutputModel> SetTaskResultAsync(CreateTaskResultInput input, int userId)
         {
             var task = await _taskRepository.GetSingleByConditionAsync(t => t.Id == input.TaskId);
             if (task == null)

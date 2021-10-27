@@ -77,7 +77,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         [HttpPost("CreateGroup")]
         //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(GroupOutputModel), StatusCodes.Status200OK)]
-        public async Task<IActionResult> CreateGroupAsync(GroupInputModel model)
+        public async Task<IActionResult> CreateGroupAsync(CreateGroupInputModel model)
         {
             try
             {

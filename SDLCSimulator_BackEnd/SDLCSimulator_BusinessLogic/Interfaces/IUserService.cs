@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SDLCSimulator_BusinessLogic.Models.General;
+using SDLCSimulator_BusinessLogic.Models.Input;
+using SDLCSimulator_BusinessLogic.Models.Output;
 
 namespace SDLCSimulator_BusinessLogic.Interfaces
 {
@@ -8,5 +11,7 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
         Task<AuthenticateResponseModel> LoginAsync(AuthenticateRequestModel model);
         Task<UpdateUserInfoModel> UpdateUserInfoAsync(UpdateUserInfoModel model,int userId);
         Task<bool> ChangePasswordAsync(ChangePasswordRequestModel model,int userId);
+        Task<List<UserOutputModel>> GetAllUsers();
+        Task<UserOutputModel> CreateUserAsync(CreateUserInputModel model);
     }
 }

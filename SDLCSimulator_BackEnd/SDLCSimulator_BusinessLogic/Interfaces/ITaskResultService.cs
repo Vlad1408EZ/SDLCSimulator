@@ -6,6 +6,6 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
 {
     public interface ITaskResultService
     {
-        Task<StudentTaskResultOutputModel> SetTaskResultAsync(TaskResultInput input,int userId);
+        Task<StudentTaskResultOutputModel> SetTaskResultAsync(CreateTaskResultInput input,int userId);
     }
 }

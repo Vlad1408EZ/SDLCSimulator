@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_Data.Enums;
 
@@ -11,26 +10,27 @@ namespace SDLCSimulator_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeController : ControllerBase
+    public class RoleController : ControllerBase
     {
-        private readonly ITypeService _typeService;
+        private readonly IRoleService _roleService;
 
-        public TypeController(ITypeService typeService)
+        public RoleController(IRoleService roleService)
         {
-            _typeService = typeService;
+            _roleService = roleService;
         }
 
         /// <summary>
-        /// Get task types.
+        /// Get roles.
         /// </summary>
-        /// <returns>The list of task types</returns>
+        /// <returns>The list of roles</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(List<TaskTypeEnum>), StatusCodes.Status200OK)]
-        public IActionResult GetTaskTypes()
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(List<RoleEnum>), StatusCodes.Status200OK)]
+        public IActionResult GetRoles()
         {
             try
             {
-                var response = _typeService.GetAllTaskTypes();
+                var response = _roleService.GetAllRoles();
 
                 return Ok(response);
             }

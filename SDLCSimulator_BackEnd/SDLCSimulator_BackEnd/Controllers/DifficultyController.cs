@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SDLCSimulator_BusinessLogic.Interfaces;
+using SDLCSimulator_Data.Enums;
 
 namespace SDLCSimulator_BackEnd.Controllers
 {
@@ -22,7 +23,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of task difficulties</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(List<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<DifficultyEnum>), StatusCodes.Status200OK)]
         public IActionResult GetTaskDifficulties()
         {
             try

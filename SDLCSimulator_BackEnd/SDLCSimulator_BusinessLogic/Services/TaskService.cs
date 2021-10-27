@@ -186,7 +186,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             await _groupTaskRepository.CreateRangeAsync(groupTasks);
 
-            await _queueEmailService.ListenToEmailSendingMessagesAsync(new EmailModel()
+            await _queueEmailService.ListenToEmailSendingMessagesForTaskAsync(new EmailTaskModel()
             {
                 GroupIds = groups.Select(g => g.Id).ToList(),
                 TeacherId = userId,
@@ -222,7 +222,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             var taskResults = _taskResultRepository.GetByCondition(tr => tr.TaskId == task.Id);
 
-            if (await taskResults.CountAsync() != 0)
+            if (await taskResults.AnyAsync())
             {
                 throw new InvalidOperationException($"Завдання з айді {model.TaskId} не можна оновити оскільки має результати від студентів");
             }
@@ -283,7 +283,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             var taskResults = _taskResultRepository.GetByCondition(tr => tr.TaskId == task.Id);
 
-            if (await taskResults.CountAsync() != 0)
+            if (await taskResults.AnyAsync())
             {
                 throw new InvalidOperationException($"Завдання з айді {taskId} не можна видалити оскільки має результати від студентів");
             }

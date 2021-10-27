@@ -5,6 +5,7 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
 {
     public interface IEmailService
     {
-        Task ListenToEmailSendingMessagesAsync(EmailModel model);
+        Task ListenToEmailSendingMessagesForUserAsync(EmailUserModel model);
+        Task ListenToEmailSendingMessagesForTaskAsync(EmailTaskModel model);
     }
 }

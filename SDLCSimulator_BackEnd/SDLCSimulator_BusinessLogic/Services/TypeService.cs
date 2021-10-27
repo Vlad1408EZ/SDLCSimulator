@@ -8,11 +8,11 @@ namespace SDLCSimulator_BusinessLogic.Services
 {
     public class TypeService : ITypeService
     {
-        public List<string> GetAllTaskTypes()
+        public List<TaskTypeEnum> GetAllTaskTypes()
         {
             var values = Enum.GetValues<TaskTypeEnum>().ToList();
 
-            return values.Select(v => v.ToString()).ToList();
+            return values;
         }
     }
 }
