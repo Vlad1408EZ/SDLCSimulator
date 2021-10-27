@@ -2,7 +2,7 @@
 
 namespace SDLCSimulator_BusinessLogic.Models.Input
 {
-    public class TaskResultInput
+    public class CreateTaskResultInput
     {
         public int TaskId { get; set; }
         public StandardAndResultDragAndDropModel Result { get; set; }

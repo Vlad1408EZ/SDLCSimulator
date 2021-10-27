@@ -2,7 +2,7 @@
 
 namespace SDLCSimulator_BusinessLogic.Models.General
 {
-    public class EmailModel
+    public class EmailTaskModel
     {
         public List<int> GroupIds { get; set; }
         public int TeacherId { get; set; }

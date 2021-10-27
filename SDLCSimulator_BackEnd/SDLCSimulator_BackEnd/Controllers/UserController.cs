@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.General;
+using SDLCSimulator_BusinessLogic.Models.Input;
+using SDLCSimulator_BusinessLogic.Models.Output;
 
 namespace SDLCSimulator_BackEnd.Controllers
 {
@@ -34,6 +36,49 @@ namespace SDLCSimulator_BackEnd.Controllers
             try
             {
                 var response = await _userService.LoginAsync(model);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get all users.
+        /// </summary>
+        /// <returns>Users information</returns>
+        [HttpGet("AllUsers")]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(List<UserOutputModel>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllUsersAsync()
+        {
+            try
+            {
+                var response = await _userService.GetAllUsers();
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Create user.
+        /// </summary>
+        /// <param name="model">User input model</param>
+        /// <returns>Created user</returns>
+        [HttpPost("CreateUser")]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(UserOutputModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> CreateUserAsync(CreateUserInputModel model)
+        {
+            try
+            {
+                var response = await _userService.CreateUserAsync(model);
 
                 return Ok(response);
             }

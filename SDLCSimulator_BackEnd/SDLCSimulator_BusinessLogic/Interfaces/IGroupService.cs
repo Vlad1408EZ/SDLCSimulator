@@ -9,6 +9,6 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
     {
         Task<List<GroupOutputModel>> GetAllGroupsAsync();
         Task<List<GroupOutputModel>> GetTeacherGroupsAsync(int teacherId);
-        Task<GroupOutputModel> CreateGroupAsync(GroupInputModel model);
+        Task<GroupOutputModel> CreateGroupAsync(CreateGroupInputModel model);
     }
 }

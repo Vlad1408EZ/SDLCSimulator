@@ -1,7 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.General;
+using SDLCSimulator_BusinessLogic.Models.Input;
+using SDLCSimulator_BusinessLogic.Models.Output;
+using SDLCSimulator_Data;
+using SDLCSimulator_Data.Enums;
 using SDLCSimulator_Repository.Interfaces;
 
 namespace SDLCSimulator_BusinessLogic.Services
@@ -9,13 +16,17 @@ namespace SDLCSimulator_BusinessLogic.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-
+        private readonly IGroupRepository _groupRepository;
+        private readonly IEmailService _emailService;
         private readonly IAuthService _authService;
 
-        public UserService(IUserRepository userRepository, IAuthService authService)
+        public UserService(IUserRepository userRepository, IAuthService authService, IGroupRepository groupRepository,
+            IEmailService emailService)
         {
             _userRepository = userRepository;
             _authService = authService;
+            _groupRepository = groupRepository;
+            _emailService = emailService;
         }
 
         public async Task<AuthenticateResponseModel> LoginAsync(AuthenticateRequestModel model)
@@ -57,6 +68,84 @@ namespace SDLCSimulator_BusinessLogic.Services
             user.Password = _authService.HashPassword(model.NewPassword);
             await _userRepository.UpdateAsync(user);
             return true;
+        }
+
+        public async Task<List<UserOutputModel>> GetAllUsers()
+        {
+            var users = await _userRepository.GetAll().Include(u => u.Group)
+                .Include(u => u.GroupTeachers).ThenInclude(gt => gt.Group).ToListAsync();
+
+            var result = users.Select(u => new UserOutputModel()
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Role = u.Role,
+                Email = u.Email,
+                Groups = u.Group != null ? new List<string> {u.Group.GroupName}
+                    : u.GroupTeachers.Any() ? u.GroupTeachers.Select(gt => gt.Group.GroupName).ToList()
+                    : new List<string>()
+            }).ToList();
+
+            return result;
+        }
+
+        public async Task<UserOutputModel> CreateUserAsync(CreateUserInputModel model)
+        {
+            var user = await _userRepository.GetSingleByConditionAsync(u => u.Email == model.Email);
+            if (user != null)
+            {
+                throw new InvalidOperationException($"Користувач з імейлом '{model.Email}' вже існує");
+            }
+
+            var groups = await _groupRepository.GetByCondition(g => model.Groups.Any(gr => g.GroupName == gr))
+                .ToListAsync();
+
+            if (groups.Count != model.Groups.Count)
+            {
+                throw new InvalidOperationException($"Вхідні дані про групи не валідні");
+            }
+
+            user = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Password = _authService.HashPassword(model.Password),
+                Role = model.Role
+            };
+            if (user.Role == RoleEnum.Student)
+            {
+                user.GroupId = groups[0].Id;
+            }
+
+            else if (user.Role == RoleEnum.Teacher)
+            {
+                user.GroupTeachers = groups.Select(g => new GroupTeacher
+                {
+                    GroupId = g.Id
+                }).ToList();
+            }
+
+            await _userRepository.CreateAsync(user);
+
+            await _emailService.ListenToEmailSendingMessagesForUserAsync(new EmailUserModel
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Password = model.Password
+            });
+
+            return new UserOutputModel()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Role = user.Role,
+                Email = user.Email,
+                Groups = groups.Select(g => g.GroupName).ToList()
+            };
         }
     }
 }

@@ -6,11 +6,11 @@ using SDLCSimulator_Data.Enums;
 
 namespace SDLCSimulator_BusinessLogic.Services
 {
-    public class DifficultyService : IDifficultyService
+    public class RoleService : IRoleService
     {
-        public List<DifficultyEnum> GetAllDifficulties()
+        public List<RoleEnum> GetAllRoles()
         {
-            var values = Enum.GetValues<DifficultyEnum>().ToList();
+            var values = Enum.GetValues<RoleEnum>().ToList();
 
             return values;
         }

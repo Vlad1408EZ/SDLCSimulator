@@ -3,8 +3,8 @@ using SDLCSimulator_Data.Enums;
 
 namespace SDLCSimulator_BusinessLogic.Interfaces
 {
-    public interface ITypeService
+    public interface IRoleService
     {
-        List<TaskTypeEnum> GetAllTaskTypes();
+        List<RoleEnum> GetAllRoles();
     }
 }

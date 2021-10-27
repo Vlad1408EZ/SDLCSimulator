@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using System.Globalization;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Newtonsoft.Json.Converters;
 using SDLCSimulator_BackEnd.Extensions;
 
 namespace SDLCSimulator_BackEnd
@@ -24,7 +25,10 @@ namespace SDLCSimulator_BackEnd
         public void ConfigureServices(IServiceCollection services)
         {
             ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("uk-UA");
-            services.AddControllers().AddFluentValidation();
+            services.AddControllers().AddFluentValidation().AddNewtonsoftJson(opts =>
+            {
+                opts.SerializerSettings.Converters.Add(new StringEnumConverter());
+            }); ;
             services.AddAppCors();
             services.AddMyJwtBearer(Configuration);
             services.AddAppDbContext(Configuration);

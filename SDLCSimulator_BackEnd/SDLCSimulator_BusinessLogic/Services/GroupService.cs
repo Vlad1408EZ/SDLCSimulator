@@ -43,7 +43,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             }).ToList();
         }
 
-        public async Task<GroupOutputModel> CreateGroupAsync(GroupInputModel model)
+        public async Task<GroupOutputModel> CreateGroupAsync(CreateGroupInputModel model)
         {
             var group = await _groupRepository.GetSingleByConditionAsync(g => g.GroupName == model.GroupName);
             if (group != null)
