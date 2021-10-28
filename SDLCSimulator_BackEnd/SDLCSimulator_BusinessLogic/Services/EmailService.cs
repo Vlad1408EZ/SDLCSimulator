@@ -98,7 +98,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             await _smtpClient.SendMailAsync(message);
         }
 
-        private string CreateUserMessage(EmailUserModel model)
+        private static string CreateUserMessage(EmailUserModel model)
         {
             var body = new StringBuilder();
             body.AppendLine($"Шановний(шановна) {model.LastName} {model.FirstName}");
