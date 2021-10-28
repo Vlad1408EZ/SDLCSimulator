@@ -56,7 +56,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         {
             try
             {
-                var response = await _userService.GetAllUsers();
+                var response = await _userService.GetAllUsersAsync();
 
                 return Ok(response);
             }

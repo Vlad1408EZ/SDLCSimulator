@@ -70,7 +70,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             return true;
         }
 
-        public async Task<List<UserOutputModel>> GetAllUsers()
+        public async Task<List<UserOutputModel>> GetAllUsersAsync()
         {
             var users = await _userRepository.GetAll().Include(u => u.Group)
                 .Include(u => u.GroupTeachers).ThenInclude(gt => gt.Group).ToListAsync();

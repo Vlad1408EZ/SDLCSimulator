@@ -11,7 +11,7 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
         Task<AuthenticateResponseModel> LoginAsync(AuthenticateRequestModel model);
         Task<UpdateUserInfoModel> UpdateUserInfoAsync(UpdateUserInfoModel model,int userId);
         Task<bool> ChangePasswordAsync(ChangePasswordRequestModel model,int userId);
-        Task<List<UserOutputModel>> GetAllUsers();
+        Task<List<UserOutputModel>> GetAllUsersAsync();
         Task<UserOutputModel> CreateUserAsync(CreateUserInputModel model);
     }
 }

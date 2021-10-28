@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_BusinessLogic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_Data", "SDLCSimulator_Data\SDLCSimulator_Data.csproj", "{95E1F05E-7B2B-4A18-98B5-90200296A641}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_Repository", "SDLCSimulator_Repository\SDLCSimulator_Repository.csproj", "{629D0C08-A6DC-4FA2-8BBA-AF0B938BE062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_Repository", "SDLCSimulator_Repository\SDLCSimulator_Repository.csproj", "{629D0C08-A6DC-4FA2-8BBA-AF0B938BE062}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5E33BAB9-29FD-4495-837B-8509AD46BC96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_BackEnd_Tests", "SDLCSimulator_BackEnd_Tests\SDLCSimulator_BackEnd_Tests.csproj", "{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{629D0C08-A6DC-4FA2-8BBA-AF0B938BE062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{629D0C08-A6DC-4FA2-8BBA-AF0B938BE062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{629D0C08-A6DC-4FA2-8BBA-AF0B938BE062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4} = {5E33BAB9-29FD-4495-837B-8509AD46BC96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7010809D-A5EB-496B-A825-26CCC84BF313}
