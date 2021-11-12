@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_Repository", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5E33BAB9-29FD-4495-837B-8509AD46BC96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_BackEnd_Tests", "SDLCSimulator_BackEnd_Tests\SDLCSimulator_BackEnd_Tests.csproj", "{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDLCSimulator_BackEnd_Tests", "SDLCSimulator_BackEnd_Tests\SDLCSimulator_BackEnd_Tests.csproj", "{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_BusinessLogic_Tests", "SDLCSimulator_Business_Tests\SDLCSimulator_BusinessLogic_Tests.csproj", "{8534C452-7117-47F9-8386-3BED185A900B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLCSimulator_Common", "SDLCSimulator_Common\SDLCSimulator_Common.csproj", "{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +45,22 @@ Global
 		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8534C452-7117-47F9-8386-3BED185A900B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8534C452-7117-47F9-8386-3BED185A900B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8534C452-7117-47F9-8386-3BED185A900B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8534C452-7117-47F9-8386-3BED185A900B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{73CEFE20-ACE5-41B2-A09A-2C39B3EF09B4} = {5E33BAB9-29FD-4495-837B-8509AD46BC96}
+		{8534C452-7117-47F9-8386-3BED185A900B} = {5E33BAB9-29FD-4495-837B-8509AD46BC96}
+		{D3ED7D7D-A8C5-48EB-B39F-31DCFF9F1934} = {5E33BAB9-29FD-4495-837B-8509AD46BC96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7010809D-A5EB-496B-A825-26CCC84BF313}

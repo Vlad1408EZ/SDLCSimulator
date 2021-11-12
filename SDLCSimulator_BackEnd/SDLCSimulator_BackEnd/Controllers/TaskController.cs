@@ -29,7 +29,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="filterInput">Task filtering</param>
         /// <returns>Tasks with task results for student.</returns>             
         [HttpGet("StudentTasks")]
-        //[Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student")]
         [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilteredTasksWithTaskResultsForStudentAsync([FromQuery] TaskForStudentFilterInput filterInput)
         {

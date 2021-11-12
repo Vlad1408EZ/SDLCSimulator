@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0-rc.2.21480.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-    <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SDLCSimulator_BackEnd\SDLCSimulator_BackEnd.csproj" />
     <ProjectReference Include="..\SDLCSimulator_BusinessLogic\SDLCSimulator_BusinessLogic.csproj" />
     <ProjectReference Include="..\SDLCSimulator_Common\SDLCSimulator_Common.csproj" />
   </ItemGroup>

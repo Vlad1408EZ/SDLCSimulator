@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using SDLCSimulator_BusinessLogic.Models.Input;
 
-namespace SDLCSimulator_BackEnd_Tests.Fixtures
+namespace SDLCSimulator_Common.Fixtures
 {
     public static class CreateTaskResultInputFixture
     {

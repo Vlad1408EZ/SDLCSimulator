@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SDLCSimulator_BackEnd.Controllers;
-using SDLCSimulator_BackEnd_Tests.Fixtures;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.General;
 using SDLCSimulator_BusinessLogic.Models.Output;
+using SDLCSimulator_Common.Fixtures;
 using Xunit;
 
 namespace SDLCSimulator_BackEnd_Tests.Controllers

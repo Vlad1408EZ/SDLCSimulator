@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using SDLCSimulator_BusinessLogic.Models.Input;
 
-namespace SDLCSimulator_BackEnd_Tests.Fixtures
+namespace SDLCSimulator_Common.Fixtures
 {
     public static class TaskForTeacherFilterInputFixture
     {
