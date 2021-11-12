@@ -1,6 +1,6 @@
 ﻿using SDLCSimulator_BusinessLogic.Models.General;
 
-namespace SDLCSimulator_BackEnd_Tests.Fixtures
+namespace SDLCSimulator_Common.Fixtures
 {
     public static class ChangePasswordRequestModelFixture
     {

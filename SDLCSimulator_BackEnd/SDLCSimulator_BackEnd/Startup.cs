@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,11 +31,11 @@ namespace SDLCSimulator_BackEnd
                 opts.SerializerSettings.Converters.Add(new StringEnumConverter());
             }); ;
             services.AddAppCors();
-            services.AddMyJwtBearer(Configuration);
             services.AddAppDbContext(Configuration);
             services.AddAppRepositories();
             services.AddAppServices(Configuration);
             services.AddAppValidators();
+            services.AddMyJwtBearer(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SDLCSimulator_BackEnd", Version = "v1" });
@@ -56,6 +57,8 @@ namespace SDLCSimulator_BackEnd
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

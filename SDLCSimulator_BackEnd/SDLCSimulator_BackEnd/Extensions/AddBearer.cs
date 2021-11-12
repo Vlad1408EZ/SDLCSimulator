@@ -22,6 +22,7 @@ namespace SDLCSimulator_BackEnd.Extensions
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
+                        RequireExpirationTime = true,
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = jwtConfig.Issuer,
                         ValidAudience = jwtConfig.Issuer,
