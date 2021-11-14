@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_Data.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SDLCSimulator_BackEnd.Controllers
 {
@@ -25,6 +26,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of task types</returns>
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(List<TaskTypeEnum>), StatusCodes.Status200OK)]
         public IActionResult GetTaskTypes()
         {

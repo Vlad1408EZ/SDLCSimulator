@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SDLCSimulator_BusinessLogic.Interfaces;
@@ -23,6 +24,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of task difficulties</returns>
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(List<DifficultyEnum>), StatusCodes.Status200OK)]
         public IActionResult GetTaskDifficulties()
         {

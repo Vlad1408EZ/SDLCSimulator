@@ -50,7 +50,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>Users information</returns>
         [HttpGet("AllUsers")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<UserOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllUsersAsync()
         {
@@ -72,7 +72,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">User input model</param>
         /// <returns>Created user</returns>
         [HttpPost("CreateUser")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(UserOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateUserAsync(CreateUserInputModel model)
         {
@@ -94,7 +94,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">Current user update model</param>
         /// <returns>Updated info</returns>
         [HttpPut("UpdateUserInfo")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(UpdateUserInfoModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateUserInfoAsync(UpdateUserInfoModel model)
         {
@@ -121,7 +121,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">New password with confirmation</param>
         /// <returns>true or false</returns>
         [HttpPost("ChangePassword")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangePasswordAsync(ChangePasswordRequestModel model)
         {

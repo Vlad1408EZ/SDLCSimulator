@@ -11,7 +11,7 @@ namespace SDLCSimulator_Common.Fixtures
             return new()
             {
                 TaskId = 1,
-                Type = TaskTypeEnum.DragAndDrop,
+                Type = TaskTypeEnum.RequirementsTypeAndOrderByImportance,
                 Difficulty = DifficultyEnum.Medium,
                 Topic = "Вимоги",
                 Description = new()

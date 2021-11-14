@@ -61,7 +61,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="filterInput">Task filtering</param>
         /// <returns>Tasks with task results for teacher.</returns>             
         [HttpGet("TeacherTasks")]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilteredTasksWithTaskResultsForTeacherAsync([FromQuery] TaskForTeacherFilterInput filterInput)
         {
@@ -89,7 +89,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">Task input model</param>
         /// <returns>Created task.</returns>             
         [HttpPost("CreateTask")]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         [ProducesResponseType(typeof(TeacherTasksOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateTaskAsync(CreateTaskInputModel model)
         {
@@ -116,7 +116,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">Task input model</param>
         /// <returns>Updated task.</returns>             
         [HttpPut("UpdateTask")]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         [ProducesResponseType(typeof(TeacherTasksOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateTaskAsync(UpdateTaskInputModel model)
         {
@@ -143,7 +143,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="taskId">Id of task to delete</param>
         /// <returns>true or false.</returns>             
         [HttpDelete("RemoveTask")]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         public async Task<IActionResult> RemoveTaskAsync(int taskId)
         {

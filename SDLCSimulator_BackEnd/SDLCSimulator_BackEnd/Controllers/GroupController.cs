@@ -28,7 +28,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of groups</returns>
         [HttpGet("AllGroups")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GroupOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllGroupsAsync()
         {
@@ -49,7 +49,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of groups</returns>
         [HttpGet("TeacherGroups")]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         [ProducesResponseType(typeof(List<GroupOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetGroupsForTeacherAsync()
         {
@@ -75,7 +75,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">Group input model</param>
         /// <returns>Created group</returns>
         [HttpPost("CreateGroup")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(GroupOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateGroupAsync(CreateGroupInputModel model)
         {
