@@ -24,7 +24,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// </summary>
         /// <returns>The list of roles</returns>
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<RoleEnum>), StatusCodes.Status200OK)]
         public IActionResult GetRoles()
         {

@@ -29,7 +29,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <param name="model">Input task result model</param>
         /// <returns>Task result information</returns>
         [HttpPost("SetTaskResult")]
-        //[Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student")]
         [ProducesResponseType(typeof(StudentTaskResultOutputModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> SetTaskResultAsync(CreateTaskResultInput model)
         {

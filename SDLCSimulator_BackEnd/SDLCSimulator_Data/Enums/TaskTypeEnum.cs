@@ -2,6 +2,7 @@
 {
     public enum TaskTypeEnum
     {
-        DragAndDrop = 1
+        RequirementsTypeAndOrderByImportance = 1,
+        SystemsTypeAndFindMostImportant = 2,
     }
 }
