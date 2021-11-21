@@ -6,7 +6,7 @@ namespace SDLCSimulator_Common.Fixtures
 {
     public static class CreateTaskInputModelFixture
     {
-        public static CreateTaskInputModel CreateValidEntity()
+        public static CreateTaskInputModel CreateRequirementsTypeAndOrderByImportanceTask()
         {
             return new()
             {

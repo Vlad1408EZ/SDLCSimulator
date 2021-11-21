@@ -18,7 +18,6 @@ using TaskModel = SDLCSimulator_Data.Task;
 namespace SDLCSimulator_BusinessLogic.Services
 {
     public class TaskService : ITaskService
-
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IGroupRepository _groupRepository;

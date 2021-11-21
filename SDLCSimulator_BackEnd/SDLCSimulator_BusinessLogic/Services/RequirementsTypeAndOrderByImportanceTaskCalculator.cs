@@ -31,13 +31,14 @@ namespace SDLCSimulator_BusinessLogic.Services
             }
 
             var percentage = correctAnswersNumber / (decimal)questionsNumber;
+            var finalMark = (int)task.MaxGrade * percentage - input.ErrorCount * ErrorRateGetter.GetErrorRate(task.ErrorRate);
             var taskResult = new TaskResult()
             {
                 StudentId = userId,
                 TaskId = task.Id,
                 Percentage = percentage,
                 ErrorCount = input.ErrorCount,
-                FinalMark = (int)task.MaxGrade * percentage - input.ErrorCount * ErrorRateGetter.GetErrorRate(task.ErrorRate),
+                FinalMark = finalMark < 0 ? 0 : finalMark,
                 Result = JsonConvert.SerializeObject(input.Result),
             };
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SDLCSimulator_BusinessLogic.Services
 {
-    public class SystemsTypeAndFindMostImportantCalculator : IGradeCalculator
+    public class SystemsTypeAndFindMostImportantTaskCalculator : IGradeCalculator
     {
         private const int DecreaseErrorRate = 5;
         public TaskResult CalculateTaskResult(Dictionary<string, List<string>> standard, CreateTaskResultInput input, int userId, SDLCSimulator_Data.Task task)
@@ -33,13 +33,14 @@ namespace SDLCSimulator_BusinessLogic.Services
             }
 
             var percentage = correctAnswersNumber / (decimal)valuesNumber;
+            var finalMark = (int)task.MaxGrade * percentage - input.ErrorCount * ErrorRateGetter.GetErrorRate(task.ErrorRate) / DecreaseErrorRate;
             var taskResult = new TaskResult()
             {
                 StudentId = userId,
                 TaskId = task.Id,
                 Percentage = percentage,
                 ErrorCount = input.ErrorCount,
-                FinalMark = (int)task.MaxGrade * percentage - input.ErrorCount * ErrorRateGetter.GetErrorRate(task.ErrorRate) / DecreaseErrorRate,
+                FinalMark = finalMark < 0 ? 0 : finalMark,
                 Result = JsonConvert.SerializeObject(input.Result),
             };
 

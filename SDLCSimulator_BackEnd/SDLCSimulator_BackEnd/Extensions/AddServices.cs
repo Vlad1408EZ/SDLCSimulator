@@ -19,7 +19,7 @@ namespace SDLCSimulator_BackEnd.Extensions
             collection.AddScoped<IRoleService,RoleService>();
             collection.AddScoped<IGroupService,GroupService>();
             collection.AddScoped<IGradeCalculator, RequirementsTypeAndOrderByImportanceTaskCalculator>();
-            collection.AddScoped<IGradeCalculator, SystemsTypeAndFindMostImportantCalculator>();
+            collection.AddScoped<IGradeCalculator, SystemsTypeAndFindMostImportantTaskCalculator>();
             collection.AddScoped<IEmailService,EmailService>(sp => new EmailService(configuration,
                 sp.GetRequiredService<IUserRepository>()));
         }

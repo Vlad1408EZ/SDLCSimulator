@@ -32,6 +32,11 @@ namespace SDLCSimulator_BusinessLogic.Services
             _gradeCalculator = gradeCalculator;
         }
 
+        internal Type GetCalculatorType()
+        {
+            return _gradeCalculator.GetType();
+        }
+
         public async Task<StudentTaskResultOutputModel> SetTaskResultAsync(CreateTaskResultInput input, int userId)
         {
             var task = await _taskRepository.GetSingleByConditionAsync(t => t.Id == input.TaskId);
@@ -48,7 +53,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
             else if(task.Type == TaskTypeEnum.SystemsTypeAndFindMostImportant)
             {
-                SetGradeCalculator(new SystemsTypeAndFindMostImportantCalculator());
+                SetGradeCalculator(new SystemsTypeAndFindMostImportantTaskCalculator());
             }
 
             var taskResult = _gradeCalculator.CalculateTaskResult(standard, input, userId, task);
