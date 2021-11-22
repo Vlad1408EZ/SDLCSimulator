@@ -1,0 +1,22 @@
+.dialogPaper:global(.MuiPaper-root) {
+  padding: 0;
+  width: fit-content;
+  min-width: 500px;
+}
+
+.dialogTitle {
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  height: 40px;
+
+  .closeIcon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+}
+
+.dialogContent {
+  max-height: 650px;
+}

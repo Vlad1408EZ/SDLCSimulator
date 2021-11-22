@@ -1,0 +1,103 @@
+@import './../../../../scss/vars';
+
+.filledRoot {
+  width: 100%;
+  color: black;
+  background-color: $colorLightGrey;
+  border-radius: 0;
+
+  &:global(.Mui-focused) {
+    background-color: $colorLightGrey;
+  }
+  &:global(.MuiFilledInput-adornedEnd) {
+    padding-right: 0;
+  }
+  &:global(.MuiFilledInput-underline):before {
+    border-bottom: 0;
+  }
+  &:global(.MuiFilledInput-underline):after {
+    border-bottom: 2px solid $colorLightGreen;
+  }
+  &:global(.MuiFilledInput-underline):before {
+    border-bottom: none;
+  }
+}
+
+.filledRootWithoutLabel {
+  height: 100%;
+
+  & :global(.MuiFilledInput-root) {
+    height: 100%;
+    padding-top: 0;
+    & :global(.MuiFilledInput-input) {
+      padding: 0 15px;
+    }
+  }
+}
+
+.filledRootInput {
+  box-shadow: none !important;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.filledLabel {
+  color: $colorDarkGrey;
+  &:global(.Mui-focused) {
+    color: $colorDarkGrey;
+  }
+}
+
+.outlinedRoot {
+  width: 100%;
+  color: black;
+
+  textarea {
+    box-shadow: none;
+  }
+
+  &:global(.MuiInputBase-multiline) {
+    padding: 18.5px 14px !important;
+  }
+
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border-width: 1px;
+  }
+
+  &:global(.Mui-focused) :global(.MuiOutlinedInput-notchedOutline),
+  &:hover :global(.MuiOutlinedInput-notchedOutline) {
+    border-color: $nTextGray;
+    border-width: 2px;
+  }
+}
+
+.root {
+  width: 100%;
+  textarea,
+  textarea:focus,
+  input,
+  input:focus {
+    box-shadow: none;
+  }
+  &::before,
+  &:hover:not(:global(.Mui-disabled)):before {
+    border-bottom: none;
+  }
+  &:global(.MuiInput-underline),
+  &:global(.MuiInput-colorSecondary.MuiInput-underline) {
+    &::after {
+      border-bottom: 2px solid $mainGreen;
+    }
+  }
+}
+
+.rootStandard {
+  @extend .root;
+  &::before,
+  &:hover:not(:global(.Mui-disabled)):before {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: inherit;
+  }
+}

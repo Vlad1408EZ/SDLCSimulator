@@ -1,0 +1,63 @@
+@import './vars.scss';
+
+html,
+body,
+#container {
+  height: 100%;
+  font-family: Roboto !important;
+  font-weight: 500;
+  scroll-behavior: smooth;
+  //background-color: rgb(244, 244, 244);
+  background-color: #f5f5f5;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  transition: color 0.2s ease;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+textarea[disabled],
+textarea[disabled]::placeholder,
+textarea.form-control[disabled],
+textarea.form-control[disabled]::placeholder,
+input.form-control[disabled],
+input.form-control[disabled]::placeholder,
+input[type='text'][disabled],
+input[type='text'][disabled]::placeholder,
+input[type='password'][disabled],
+input[type='password'][disabled]::placeholder,
+input[type='email'][disabled],
+input[type='email'][disabled]::placeholder,
+input[type='number'][disabled],
+input[type='number'][disabled]::placeholder,
+[type='text'].form-control[disabled],
+[type='text'].form-control[disabled]::placeholder,
+[type='password'].form-control[disabled],
+[type='password'].form-control[disabled]::placeholder,
+[type='email'].form-control[disabled],
+[type='email'].form-control[disabled]::placeholder,
+[type='tel'].form-control[disabled],
+[type='tel'].form-control[disabled]::placeholder,
+[contenteditable].form-control[disabled],
+[contenteditable].form-control[disabled]::placeholder {
+  color: #a0a0a0 !important;
+  -webkit-text-fill-color: #a0a0a0; /* Override iOS / Android font color change */
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+}
