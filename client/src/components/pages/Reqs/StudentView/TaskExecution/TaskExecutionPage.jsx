@@ -24,6 +24,8 @@ const TaskExecution = ({ taskId }) => {
         }
     }, [requiredTask])
 
+    if (!parsedTask) return null;
+
     return parsedTask && (
         <>
             <ExecutionResultModal />
