@@ -6,6 +6,7 @@ const getCellName = (fileName) => {
     if (fileName === "errorCount") return "Кількість помилок";
     if (fileName === "finalMark") return "Заліковий бал";
     if (fileName === "percentage") return "Результат у відсотках";
+    else return fileName;
 }
 
 const getHeaderCells = (availableFiles) =>

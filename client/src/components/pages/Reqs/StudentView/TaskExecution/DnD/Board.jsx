@@ -8,7 +8,12 @@ import FlexBox from '../../../../../common/ui-parts/FlexBox';
 import Column from './Column';
 import { CircularProgress, Paper } from '@mui/material';
 import Button, { BTN_TYPE } from "../../../../../common/ui-parts/Button"
-import { DEFAULT_COLUMN, initTaskExecution, resetTaskExecutionState, saveTaskExecutionResult } from '../../../../../../slices/tasksSlice';
+import {
+    DEFAULT_COLUMN,
+    initTaskExecution,
+    resetTaskExecutionState,
+    saveTaskExecutionResult
+} from '../../../../../../slices/tasksSlice';
 
 
 const getItems = (blocks, prefix) => Array.isArray(blocks)
@@ -40,7 +45,7 @@ const generateColumn = (columnTitles, blocks) =>
     );
 
 
-const Board = ({ task }) => {
+const Board = ({ task, config }) => {
     const list = useMemo(() => [DEFAULT_COLUMN, ...task.description.Columns], [task]);
     const initElementsState = useMemo(() => generateColumn(list, task.description.Blocks), [list, task]);
 
@@ -49,7 +54,6 @@ const Board = ({ task }) => {
     const [elements, setElements] = useState(initElementsState);
     const isExecutionFinished = useSelector(state => state.tasks.taskExecution.isExecutionFinished);
 
-    console.log({ elements })
     const onDragEnd = (result) => {
         if (!result.destination || isExecutionFinished) {
             return;
@@ -63,6 +67,13 @@ const Board = ({ task }) => {
         );
         listCopy[result.source.droppableId] = newSourceList;
         const destinationList = listCopy[result.destination.droppableId];
+
+        //add limitations on column insert
+        if (config &&
+            destinationList.length >= config.limitations?.blocksInCol &&
+            result.destination.droppableId !== DEFAULT_COLUMN
+        ) return;
+
         listCopy[result.destination.droppableId] = addToList(
             destinationList,
             result.destination.index,
@@ -96,7 +107,7 @@ const Board = ({ task }) => {
                     {elements
                         ? (<><FlexBox className={s.taskDescription} flexDirection="column">
                             <div>
-                                <p className={s.header}>Перетягуйте блоки у відповідні секції, які вважаєте вірними. Враховуйте важливість і порядок. </p>
+                                <p className={s.header}>{config?.header ?? "Опис завдання не знайдено"}</p>
                                 <p className={s.description}>
                                     <span className={s.value}>Складність:</span> {task.difficulty} <br />
                                     <span className={s.value}>Максимальний бал:</span> {task.maxGrade} <br />

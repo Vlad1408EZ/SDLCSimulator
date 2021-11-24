@@ -34,16 +34,17 @@ const UserAccount = () => {
             </FlexBox>
             <h4 className={s.statsHeader}>Сатистика виконання завдань</h4>
             <Table>
-                <TableHeader cells={["errorCount", "percentage", "finalMark"]} />
+                <TableHeader cells={["Спроба", "errorCount", "percentage", "finalMark"]} />
                 {studentTasks.slice(paginationOffset)
                     .map(task => (
                         !!task.studentsTaskResults.length ? (
                             <div key={task.id} >
                                 <TableRow sectionName={task.topic} coloredBackground showBorderBottom={false} />
-                                {task.studentsTaskResults.map(taskResult => (
+                                {task.studentsTaskResults.map((taskResult, index) => (
                                     <TableRow key={taskResult.id}>
+                                        <TableCell value={`№ ${index + 1}`} />
                                         <TableCell value={taskResult.errorCount} />
-                                        <TableCell value={taskResult.percentage} />
+                                        <TableCell value={taskResult.percentage * 100} />
                                         <TableCell value={taskResult.finalMark} />
                                     </TableRow>
                                 ))}
