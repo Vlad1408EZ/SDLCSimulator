@@ -1,6 +1,5 @@
 import React from 'react'
 import clx from "classnames"
-import cs from "../../../scss/common.module.scss";
 import s from "./home.module.scss";
 import FlexBox from '../../common/ui-parts/FlexBox';
 

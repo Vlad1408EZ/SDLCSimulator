@@ -8,8 +8,9 @@ import LandingPage from './components/pages/Landing/';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import PrivatePage from './components/common/PrivateRoute';
-import Reqs from './components/pages/Reqs/Reqs';
+import Reqs from './components/pages/Reqs';
 import ErrorPage from './components/pages/404';
+import StudentAccount from './components/pages/UserAccount';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route element={<RequireAuth />}>
-            <Route path="/home" exact element={<PrivatePage component={Home} />} />
-            <Route path="/reqs" exact element={<PrivatePage component={Reqs} />} />
+            <Route path="/home" element={<PrivatePage component={Home} />} />
+            <Route path="/reqs" element={<PrivatePage component={Reqs} />} />
+            <Route path="/account" element={<PrivatePage component={StudentAccount} />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>

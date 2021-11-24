@@ -6,7 +6,8 @@ import {
     Activity,
     Box as BoxIcon,
     Grid,
-    Clipboard
+    Clipboard,
+    User
 } from "react-feather";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,14 +82,20 @@ const VerticalSidebar = () => {
 
                 <div>
                     {isAuthenticated ? (
-                        <LinkWrapper
-                            className={s.sidebarItem}
-                            to="/"
-                            onClick={dispatchLogout}
-                        >
-                            <LogOut className={s.icon} size={iconSize} />
-                            Logout
-                        </LinkWrapper>
+                        <>
+                            <LinkWrapper to="/account">
+                                <Icon component={User} />
+                                Кабінет користувача
+                            </LinkWrapper>
+                            <LinkWrapper
+                                className={s.sidebarItem}
+                                to="/"
+                                onClick={dispatchLogout}
+                            >
+                                <LogOut className={s.icon} size={iconSize} />
+                                Покинути систему
+                            </LinkWrapper>
+                        </>
                     ) : (
                         <img alt="" src="/noAva.png" />
                     )}
