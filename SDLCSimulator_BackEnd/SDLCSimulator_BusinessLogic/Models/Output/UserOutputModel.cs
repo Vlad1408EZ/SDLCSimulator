@@ -9,6 +9,7 @@ namespace SDLCSimulator_BusinessLogic.Models.Output
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public bool IsDeleted { get; set; }
         public RoleEnum Role { get; set; }
         public List<string> Groups { get; set; }
     }

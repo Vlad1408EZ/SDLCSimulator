@@ -33,7 +33,7 @@ namespace SDLCSimulator_BusinessLogic.Services
         {
             var user = await _userRepository.GetSingleByConditionAsync(u => u.Email == model.Email);
 
-            if (user == null || !_authService.VerifyPassword(user.Password, model.Password))
+            if (user == null || user.IsDeleted || !_authService.VerifyPassword(user.Password, model.Password))
             {
                 throw new InvalidOperationException($"Користувач не знайдений або введено неправильний пароль");
             }
@@ -81,6 +81,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 FirstName = u.FirstName,
                 LastName = u.LastName,
                 Role = u.Role,
+                IsDeleted = u.IsDeleted,
                 Email = u.Email,
                 Groups = u.Group != null ? new List<string> {u.Group.GroupName}
                     : u.GroupTeachers.Any() ? u.GroupTeachers.Select(gt => gt.Group.GroupName).ToList()
@@ -146,6 +147,19 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Email = user.Email,
                 Groups = groups.Select(g => g.GroupName).ToList()
             };
+        }
+
+        public async Task<bool> DeleteUserAsync(int userId)
+        {
+            var user = await _userRepository.GetSingleByConditionAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                throw new InvalidOperationException($"Користувач з айді '{userId}' вже існує");
+            }
+
+            user.IsDeleted = true;
+            await _userRepository.UpdateAsync(user);
+            return true;
         }
     }
 }

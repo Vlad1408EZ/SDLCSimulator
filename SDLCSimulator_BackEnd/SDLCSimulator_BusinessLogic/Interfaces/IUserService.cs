@@ -13,5 +13,6 @@ namespace SDLCSimulator_BusinessLogic.Interfaces
         Task<bool> ChangePasswordAsync(ChangePasswordRequestModel model,int userId);
         Task<List<UserOutputModel>> GetAllUsersAsync();
         Task<UserOutputModel> CreateUserAsync(CreateUserInputModel model);
+        Task<bool> DeleteUserAsync(int userId);
     }
 }
