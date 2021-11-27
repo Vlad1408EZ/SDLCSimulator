@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SDLCSimulator_Data;
+﻿using SDLCSimulator_Data;
 using SDLCSimulator_Data.Enums;
 
 namespace SDLCSimulator_Common.Fixtures

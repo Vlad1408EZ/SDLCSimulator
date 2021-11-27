@@ -20,7 +20,7 @@ namespace SDLCSimulator_Data
         public int TeacherId { get; set; }
         public User Teacher { get; set; }
 
-        public ICollection<TaskResult> TaskResults { get; set; }
-        public ICollection<GroupTask> GroupTasks { get; set; }
+        public ICollection<TaskResult> TaskResults { get; set; } = new List<TaskResult>();
+        public ICollection<GroupTask> GroupTasks { get; set; } = new List<GroupTask>();
     }
 }

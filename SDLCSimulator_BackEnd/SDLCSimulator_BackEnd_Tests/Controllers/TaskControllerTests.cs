@@ -180,7 +180,7 @@ namespace SDLCSimulator_BackEnd_Tests.Controllers
         {
             //arrange
             var teacherId = 1;
-            var input = CreateTaskInputModelFixture.CreateValidEntity();
+            var input = CreateTaskInputModelFixture.CreateRequirementsTypeAndOrderByImportanceTask();
             _taskController.ControllerContext.HttpContext = new DefaultHttpContext
             {
                 User = new ClaimsPrincipal(
@@ -199,7 +199,7 @@ namespace SDLCSimulator_BackEnd_Tests.Controllers
         public async Task CreateTaskAsync_ClaimsDoNotContainUserId_ReturnBadRequestResponse()
         {
             //arrange
-            var input = CreateTaskInputModelFixture.CreateValidEntity();
+            var input = CreateTaskInputModelFixture.CreateRequirementsTypeAndOrderByImportanceTask();
             _taskController.ControllerContext.HttpContext = new DefaultHttpContext
             {
                 User = new ClaimsPrincipal(
@@ -220,7 +220,7 @@ namespace SDLCSimulator_BackEnd_Tests.Controllers
         {
             //arrange
             var teacherId = 1;
-            var input = CreateTaskInputModelFixture.CreateValidEntity();
+            var input = CreateTaskInputModelFixture.CreateRequirementsTypeAndOrderByImportanceTask();
             _taskController.ControllerContext.HttpContext = new DefaultHttpContext
             {
                 User = new ClaimsPrincipal(

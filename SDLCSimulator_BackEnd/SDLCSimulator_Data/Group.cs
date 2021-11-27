@@ -9,7 +9,7 @@ namespace SDLCSimulator_Data
         public int Id { get; set; }
         public string GroupName { get; set; }
 
-        public ICollection<GroupTask> GroupTasks { get; set; }
-        public ICollection<GroupTeacher> GroupTeachers { get; set; }
+        public ICollection<GroupTask> GroupTasks { get; set; } = new List<GroupTask>();
+        public ICollection<GroupTeacher> GroupTeachers { get; set; } = new List<GroupTeacher>();
     }
 }

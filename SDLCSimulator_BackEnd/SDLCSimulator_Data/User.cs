@@ -20,8 +20,8 @@ namespace SDLCSimulator_Data
         public int? GroupId { get; set; }
         public Group Group { get; set; }
 
-        public ICollection<Task> Tasks { get; set; }
-        public ICollection<TaskResult> TaskResults { get; set; }
-        public ICollection<GroupTeacher> GroupTeachers { get; set; }
+        public ICollection<Task> Tasks { get; set; } = new List<Task>();
+        public ICollection<TaskResult> TaskResults { get; set; } = new List<TaskResult>();
+        public ICollection<GroupTeacher> GroupTeachers { get; set; } = new List<GroupTeacher>();
     }
 }
