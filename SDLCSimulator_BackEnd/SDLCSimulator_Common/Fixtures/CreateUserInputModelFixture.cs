@@ -18,5 +18,18 @@ namespace SDLCSimulator_Common.Fixtures
                 Groups = new List<string> {"ПЗ-41"}
             };
         }
+
+        public static CreateUserInputModel CreateValidTeacher()
+        {
+            return new()
+            {
+                FirstName = "Андрій",
+                LastName = "Фоменко",
+                Email = "андрій.фоменко.викладач@lpnu.ua",
+                Password = "teacher1234",
+                Role = RoleEnum.Teacher,
+                Groups = new List<string> { "ПЗ-41", "ПЗ-42" }
+            };
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             _groupService = new GroupService(_groupRepository);
         }
 
+        //Тестує функцію GetAllGroupsAsync класу GroupService.
+        //Мета тесту - переконатись в правильному повернені інформації про групи
         [Fact]
         public async System.Threading.Tasks.Task GetAllGroupsAsync_ReturnAllGroups()
         {
@@ -56,6 +58,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             res.Should().BeEquivalentTo(output);
         }
 
+        //Тестує функцію GetTeacherGroupsAsync класу GroupService.
+        //Мета тесту - переконатись в правильному повернені інформації про групи для певного айді викладача
         [Fact]
         public async System.Threading.Tasks.Task GetTeacherGroupsAsync_ExistingTeacherId_ReturnTeacherGroups()
         {
@@ -75,6 +79,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             res.Should().BeEquivalentTo(output);
         }
 
+        //Тестує функцію GetTeacherGroupsAsync класу GroupService.
+        //Мета тесту - переконатись в обробці ексепшну для невалідного айді викладача
         [Fact]
         public async System.Threading.Tasks.Task GetTeacherGroupsAsync_NotExistingTeacherId_ReturnEmptyCollection()
         {
@@ -89,6 +95,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             res.Should().BeEquivalentTo(new List<GroupOutputModel>());
         }
 
+        //Тестує функцію CreateGroupAsync класу GroupService.
+        //Мета тесту - переконатись в правильності створенні групи
         [Fact]
         public async System.Threading.Tasks.Task CreateGroupAsyncAsync_ReturnCreatedGroup()
         {
@@ -105,6 +113,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             res.GroupName.Should().Be("ПЗ-46");
         }
 
+        //Тестує функцію CreateGroupAsync класу GroupService.
+        //Мета тесту - переконатись в обробці ексепшну при спробі створити групу з іменем, що вже існує
         [Fact]
         public async System.Threading.Tasks.Task CreateGroupAsyncAsync_GroupAlreadyExists_ThrowsException()
         {

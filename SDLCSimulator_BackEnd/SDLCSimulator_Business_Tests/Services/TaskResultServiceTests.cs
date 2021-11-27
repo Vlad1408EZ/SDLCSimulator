@@ -37,6 +37,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             _taskResultService = new TaskResultService(_taskRepository, _taskResultRepository);
         }
 
+        //Тестує функцію SetTaskResultAsync класу TaskResultService.
+        //Мета тесту - переконатись в правильності оцінювання завдання типу RequirementsTypeAndOrderByImportanceTask
         [Fact]
         public async System.Threading.Tasks.Task SetTaskResultAsync_RequirementsTypeAndOrderByImportanceTask_CreatedTaskResult()
         {
@@ -56,6 +58,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             result.FinalMark.Should().Be(14);
         }
 
+        //Тестує функцію SetTaskResultAsync класу TaskResultService.
+        //Мета тесту - переконатись в правильності оцінювання завдання типу RequirementsTypeAndOrderByImportanceTask без правильних відповідей 
         [Fact]
         public async System.Threading.Tasks.Task SetTaskResultAsync_RequirementsTypeAndOrderByImportanceTask_NoCorrectAnswers_FinalMarkIsZero()
         {
@@ -75,6 +79,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             result.FinalMark.Should().Be(0);
         }
 
+        //Тестує функцію SetTaskResultAsync класу TaskResultService.
+        //Мета тесту - переконатись в правильності оцінювання завдання типу SystemsTypeAndFindMostImportantTask
         [Fact]
         public async System.Threading.Tasks.Task SetTaskResultAsync_SystemsTypeAndFindMostImportantTaskCalculator_CreatedTaskResult()
         {
@@ -94,6 +100,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             Math.Round(result.FinalMark, 2).Should().Be(45.77m);
         }
 
+        //Тестує функцію SetTaskResultAsync класу TaskResultService.
+        //Мета тесту - переконатись в правильності оцінювання завдання типу SystemsTypeAndFindMostImportantTask без правильних відповідей 
         [Fact]
         public async System.Threading.Tasks.Task SetTaskResultAsync_SystemsTypeAndFindMostImportantTaskCalculator_NoCorrectAnswers_FinalMarkIsZero()
         {
@@ -113,6 +121,8 @@ namespace SDLCSimulator_BusinessLogic_Tests.Services
             result.FinalMark.Should().Be(0);
         }
 
+        //Тестує функцію SetTaskResultAsync класу TaskResultService.
+        //Мета тесту - переконатись в обробці ексепшну при спробі оцінити завдання з невалідним айді
         [Fact]
         public async System.Threading.Tasks.Task SetTaskResultAsync_NoTaskFound_ThrowsException()
         {

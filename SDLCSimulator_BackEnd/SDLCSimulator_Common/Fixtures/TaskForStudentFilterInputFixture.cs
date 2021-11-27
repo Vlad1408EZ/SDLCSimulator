@@ -10,7 +10,7 @@ namespace SDLCSimulator_Common.Fixtures
         {
             return new()
             {
-                Difficulties = new List<DifficultyEnum> {DifficultyEnum.Easy},
+                Difficulties = new List<DifficultyEnum> {DifficultyEnum.Medium},
                 Types = new List<TaskTypeEnum> {TaskTypeEnum.RequirementsTypeAndOrderByImportance},
                 Topic = "Вимоги"
             };
