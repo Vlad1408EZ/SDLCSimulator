@@ -1,17 +1,13 @@
 using Microsoft.Extensions.Options;
 using SDLCSimulator_BusinessLogic.Models.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using FluentAssertions;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Services;
 using Xunit;
 using SDLCSimulator_Common.Fixtures;
 
-namespace SDLCSimulator_BusinessLogic_Tests
+namespace SDLCSimulator_BusinessLogic_Tests.Services
 {
     public class AuthServiceTests
     {

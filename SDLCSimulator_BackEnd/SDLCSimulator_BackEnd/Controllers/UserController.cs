@@ -89,6 +89,28 @@ namespace SDLCSimulator_BackEnd.Controllers
         }
 
         /// <summary>
+        /// Delete user.
+        /// </summary>
+        /// <param name="userId">User id to delete</param>
+        /// <returns>true or false</returns>
+        [HttpDelete("DeleteUser")]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteUserAsync(int userId)
+        {
+            try
+            {
+                var response = await _userService.DeleteUserAsync(userId);
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
         /// Update current user info.
         /// </summary>
         /// <param name="model">Current user update model</param>

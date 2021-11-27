@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Newtonsoft.Json;
-using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.Output;
 using SDLCSimulator_BusinessLogic.Services;
 using SDLCSimulator_Common;
@@ -10,9 +9,6 @@ using SDLCSimulator_Common.Fixtures;
 using SDLCSimulator_Data;
 using SDLCSimulator_Repository.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
