@@ -1,46 +1,46 @@
-@import '../../../../scss/vars.scss';
+@import "../../../../scss/vars.scss";
 
 .form {
-  box-sizing: border-box;
-  height: 450px;
+	box-sizing: border-box;
+	height: 450px;
 }
 
 .field {
-  &:global(.MuiInputBase-root) {
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  & input::placeholder {
-    font-size: 14px;
-  }
-  background-color: $colorNightWhite;
-  border: none;
-  border-radius: 2px;
-  padding-left: 20px;
-  height: 50px;
-  line-height: 50px;
-  width: 100%;
-  box-shadow: none;
-  margin-bottom: 21px;
+	&:global(.MuiInputBase-root) {
+		color: #fff;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	& input::placeholder {
+		font-size: 14px;
+	}
+	background-color: $colorNightWhite;
+	border: none;
+	border-radius: 2px;
+	padding-left: 20px;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	box-shadow: none;
+	margin-bottom: 21px;
 
-  &:focus {
-    outline: none;
-  }
+	&:focus {
+		outline: none;
+	}
 }
 
 .submit {
-  height: 47px;
-  width: 100%;
-  background-color: $nGreenBg;
-  border-radius: 2px;
-  color: #fff;
-  text-align: center;
-  border: none;
-  margin-top: 4px;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  &:hover {
-    background-color: $nGreenBgHover;
-  }
+	height: 47px;
+	width: 100%;
+	background-color: $nGreenBg;
+	border-radius: 2px;
+	color: #fff;
+	text-align: center;
+	border: none;
+	margin-top: 4px;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+	&:hover {
+		background-color: $nGreenBgHover;
+	}
 }

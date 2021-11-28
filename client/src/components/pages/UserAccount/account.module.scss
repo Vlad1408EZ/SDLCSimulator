@@ -1,31 +1,31 @@
-@import '../../../scss/vars.scss';
+@import "../../../scss/vars.scss";
 
 .container {
-  box-sizing: border-box;
-  width: 80vw;
-  min-width: 750px;
-  max-width: 1500px;
-  min-height: 650px;
-  margin: 10vh auto 0;
-  padding: 40px 60px;
+	box-sizing: border-box;
+	width: 80vw;
+	min-width: 750px;
+	max-width: 1500px;
+	min-height: 650px;
+	margin: 10vh auto 0;
+	padding: 40px 60px;
 
-  .userData {
-    color: $nTextGray;
-    b {
-      color: black;
-    }
-  }
+	.userData {
+		color: $nTextGray;
+		b {
+			color: black;
+		}
+	}
 
-  img.avatar {
-    height: 130px;
-    width: 150px;
-    object-fit: cover;
-    margin-right: 20px;
-  }
+	img.avatar {
+		height: 130px;
+		width: 150px;
+		object-fit: cover;
+		margin-right: 20px;
+	}
 
-  .statsHeader {
-    font-weight: 600;
-    font-size: 18px;
-    margin: 50px 0 20px;
-  }
+	.statsHeader {
+		font-weight: 600;
+		font-size: 18px;
+		margin: 50px 0 20px;
+	}
 }

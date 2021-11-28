@@ -1,296 +1,296 @@
-@import './vars';
+@import "./vars";
 
 .overflowAuto {
-  overflow: auto;
+	overflow: auto;
 }
 
 .textAlignment {
-  &Center {
-    text-align: center;
-  }
-  &Left {
-    text-align: left;
-  }
-  &Right {
-    text-align: left;
-  }
+	&Center {
+		text-align: center;
+	}
+	&Left {
+		text-align: left;
+	}
+	&Right {
+		text-align: left;
+	}
 }
 
 // Margins
 
 @for $i from 0 through 30 {
-  .marginTop#{$i*5} {
-    margin-top: $i * 5px;
-  }
-  .marginBottom#{$i*5} {
-    margin-bottom: $i * 5px;
-  }
-  .marginLeft#{$i*5} {
-    margin-left: $i * 5px;
-  }
-  .marginRight#{$i*5} {
-    margin-right: $i * 5px;
-  }
+	.marginTop#{$i*5} {
+		margin-top: $i * 5px;
+	}
+	.marginBottom#{$i*5} {
+		margin-bottom: $i * 5px;
+	}
+	.marginLeft#{$i*5} {
+		margin-left: $i * 5px;
+	}
+	.marginRight#{$i*5} {
+		margin-right: $i * 5px;
+	}
 }
 
 @for $i1 from 0 through 30 {
-  @for $i2 from 0 through 30 {
-    @if ($i1 == $i2) {
-      .margin#{$i1*5} {
-        margin: $i1 * 5px;
-      }
-    } @else {
-      .margin#{$i1*5}x#{$i2*5} {
-        margin: $i1 * 5px $i2 * 5px;
-      }
-    }
-  }
+	@for $i2 from 0 through 30 {
+		@if ($i1 == $i2) {
+			.margin#{$i1*5} {
+				margin: $i1 * 5px;
+			}
+		} @else {
+			.margin#{$i1*5}x#{$i2*5} {
+				margin: $i1 * 5px $i2 * 5px;
+			}
+		}
+	}
 }
 
 @for $i from 1 through 5 {
-  .marginTop#{$i} {
-    margin-top: $i * 1px;
-  }
-  .marginBottom#{$i} {
-    margin-bottom: $i * 1px;
-  }
-  .marginLeft#{$i} {
-    margin-left: $i * 1px;
-  }
-  .marginRight#{$i} {
-    margin-right: $i * 1px;
-  }
+	.marginTop#{$i} {
+		margin-top: $i * 1px;
+	}
+	.marginBottom#{$i} {
+		margin-bottom: $i * 1px;
+	}
+	.marginLeft#{$i} {
+		margin-left: $i * 1px;
+	}
+	.marginRight#{$i} {
+		margin-right: $i * 1px;
+	}
 }
 
 @for $i from 2 through 30 {
-  .marginTop#{$i*5} {
-    margin-top: $i * 5px;
-  }
-  .marginBottom#{$i*5} {
-    margin-bottom: $i * 5px;
-  }
-  .marginLeft#{$i*5} {
-    margin-left: $i * 5px;
-  }
-  .marginRight#{$i*5} {
-    margin-right: $i * 5px;
-  }
+	.marginTop#{$i*5} {
+		margin-top: $i * 5px;
+	}
+	.marginBottom#{$i*5} {
+		margin-bottom: $i * 5px;
+	}
+	.marginLeft#{$i*5} {
+		margin-left: $i * 5px;
+	}
+	.marginRight#{$i*5} {
+		margin-right: $i * 5px;
+	}
 }
 
 .marginAuto {
-  &All {
-    margin: auto;
-  }
-  &Left {
-    margin-left: auto;
-  }
-  &Right {
-    margin-right: auto;
-  }
-  &Top {
-    margin-top: auto;
-  }
-  &Bottom {
-    margin-bottom: auto;
-  }
+	&All {
+		margin: auto;
+	}
+	&Left {
+		margin-left: auto;
+	}
+	&Right {
+		margin-right: auto;
+	}
+	&Top {
+		margin-top: auto;
+	}
+	&Bottom {
+		margin-bottom: auto;
+	}
 }
 
 // Paddings
 
 @for $i1 from 0 through 30 {
-  @for $i2 from 0 through 30 {
-    @if ($i1 == $i2) {
-      .padding#{$i1*5} {
-        padding: $i1 * 5px;
-      }
-    } @else {
-      .padding#{$i1*5}x#{$i2*5} {
-        padding: $i1 * 5px $i2 * 5px;
-      }
-    }
-  }
+	@for $i2 from 0 through 30 {
+		@if ($i1 == $i2) {
+			.padding#{$i1*5} {
+				padding: $i1 * 5px;
+			}
+		} @else {
+			.padding#{$i1*5}x#{$i2*5} {
+				padding: $i1 * 5px $i2 * 5px;
+			}
+		}
+	}
 }
 
 @for $i from 0 through 30 {
-  .paddingTop#{$i*5} {
-    padding-top: $i * 5px;
-  }
-  .paddingBottom#{$i*5} {
-    padding-bottom: $i * 5px;
-  }
-  .paddingLeft#{$i*5} {
-    padding-left: $i * 5px;
-  }
-  .paddingRight#{$i*5} {
-    padding-right: $i * 5px;
-  }
+	.paddingTop#{$i*5} {
+		padding-top: $i * 5px;
+	}
+	.paddingBottom#{$i*5} {
+		padding-bottom: $i * 5px;
+	}
+	.paddingLeft#{$i*5} {
+		padding-left: $i * 5px;
+	}
+	.paddingRight#{$i*5} {
+		padding-right: $i * 5px;
+	}
 }
 
 // Size
 
 .fullWidth {
-  width: 100%;
+	width: 100%;
 }
 
 @for $i from 0 through 5 {
-  .width#{$i} {
-    width: $i * 1px;
-  }
-  .height#{$i} {
-    height: $i * 1px;
-  }
+	.width#{$i} {
+		width: $i * 1px;
+	}
+	.height#{$i} {
+		height: $i * 1px;
+	}
 }
 
 @for $i from 2 through 200 {
-  .width#{$i*5} {
-    width: $i * 5px;
-  }
-  .minWidth#{$i*5} {
-    min-width: $i * 5px;
-  }
-  .maxWidth#{$i*5} {
-    max-width: $i * 5px;
-  }
-  .height#{$i*5} {
-    height: $i * 5px;
-  }
-  .minHeight#{$i*5} {
-    min-height: $i * 5px;
-  }
-  .maxHeight#{$i*5} {
-    max-height: $i * 5px;
-  }
+	.width#{$i*5} {
+		width: $i * 5px;
+	}
+	.minWidth#{$i*5} {
+		min-width: $i * 5px;
+	}
+	.maxWidth#{$i*5} {
+		max-width: $i * 5px;
+	}
+	.height#{$i*5} {
+		height: $i * 5px;
+	}
+	.minHeight#{$i*5} {
+		min-height: $i * 5px;
+	}
+	.maxHeight#{$i*5} {
+		max-height: $i * 5px;
+	}
 }
 
 // Flex
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .alignItems {
-  &Stretch {
-    align-items: stretch;
-  }
-  &Start {
-    align-items: flex-start;
-  }
-  &End {
-    align-items: flex-end;
-  }
-  &Center {
-    align-items: center;
-  }
-  &Baseline {
-    align-items: baseline;
-  }
+	&Stretch {
+		align-items: stretch;
+	}
+	&Start {
+		align-items: flex-start;
+	}
+	&End {
+		align-items: flex-end;
+	}
+	&Center {
+		align-items: center;
+	}
+	&Baseline {
+		align-items: baseline;
+	}
 }
 
 .alignSelf {
-  &Stretch {
-    align-self: stretch;
-  }
-  &Start {
-    align-self: flex-start;
-  }
-  &End {
-    align-self: flex-end;
-  }
-  &Center {
-    align-self: center;
-  }
+	&Stretch {
+		align-self: stretch;
+	}
+	&Start {
+		align-self: flex-start;
+	}
+	&End {
+		align-self: flex-end;
+	}
+	&Center {
+		align-self: center;
+	}
 }
 
 .justifyContent {
-  &Start {
-    justify-content: flex-start;
-  }
-  &End {
-    justify-content: flex-end;
-  }
-  &Center {
-    justify-content: center;
-  }
-  &SpaceBetween {
-    justify-content: space-between;
-  }
-  &SpaceAround {
-    justify-content: space-around;
-  }
+	&Start {
+		justify-content: flex-start;
+	}
+	&End {
+		justify-content: flex-end;
+	}
+	&Center {
+		justify-content: center;
+	}
+	&SpaceBetween {
+		justify-content: space-between;
+	}
+	&SpaceAround {
+		justify-content: space-around;
+	}
 }
 
 .flexDirection {
-  &Row {
-    flex-direction: row;
-  }
-  &RowReverse {
-    flex-direction: row-reverse;
-  }
-  &Column {
-    flex-direction: column;
-  }
-  &ColumnReverse {
-    flex-direction: column-reverse;
-  }
+	&Row {
+		flex-direction: row;
+	}
+	&RowReverse {
+		flex-direction: row-reverse;
+	}
+	&Column {
+		flex-direction: column;
+	}
+	&ColumnReverse {
+		flex-direction: column-reverse;
+	}
 }
 
 .flexWrap {
-  &Wrap {
-    flex-wrap: wrap;
-  }
-  &Nowrap {
-    flex-wrap: nowrap;
-  }
+	&Wrap {
+		flex-wrap: wrap;
+	}
+	&Nowrap {
+		flex-wrap: nowrap;
+	}
 }
 
 @for $i from 0 through 5 {
-  .flexGrow#{$i} {
-    flex-grow: $i;
-  }
-  .flexShrink#{$i} {
-    flex-shrink: $i;
-  }
+	.flexGrow#{$i} {
+		flex-grow: $i;
+	}
+	.flexShrink#{$i} {
+		flex-shrink: $i;
+	}
 }
 
 // Text align
 
 .textAlign {
-  &Right {
-    text-align: right;
-  }
-  &Left {
-    text-align: left;
-  }
-  &Center {
-    text-align: center;
-  }
+	&Right {
+		text-align: right;
+	}
+	&Left {
+		text-align: left;
+	}
+	&Center {
+		text-align: center;
+	}
 }
 
 // misc
 
 .position {
-  &Relatice {
-    position: relative;
-  }
-  &Absolute {
-    position: absolute;
-  }
+	&Relatice {
+		position: relative;
+	}
+	&Absolute {
+		position: absolute;
+	}
 }
 
 .scrollIntoViewTarget {
-  scroll-margin-top: 40px;
+	scroll-margin-top: 40px;
 }
 
 // position
 
 .position {
-  &Absolute {
-    position: absolute;
-  }
-  &Relative {
-    position: relative;
-  }
-  &Static {
-    position: static;
-  }
+	&Absolute {
+		position: absolute;
+	}
+	&Relative {
+		position: relative;
+	}
+	&Static {
+		position: static;
+	}
 }

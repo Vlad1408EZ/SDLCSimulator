@@ -8,12 +8,12 @@ import uiSlice from "./slices/uiSlice";
 export const history = createBrowserHistory();
 
 const store = configureStore({
-    reducer: {
-        auth: authSlice,
-        ui: uiSlice,
-        notifications: notificationsSlice,
-        tasks: tasksSlice
-    }
-})
+	reducer: {
+		auth: authSlice,
+		ui: uiSlice,
+		notifications: notificationsSlice,
+		tasks: tasksSlice,
+	},
+});
 
 export default store;

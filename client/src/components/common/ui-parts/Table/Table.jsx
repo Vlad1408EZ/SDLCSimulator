@@ -1,10 +1,8 @@
-import React from 'react'
-import FlexBox from '../FlexBox'
+import React from "react";
+import FlexBox from "../FlexBox";
 
 const Table = ({ children }) => {
-    return (
-        <FlexBox flexDirection="column">{children}</FlexBox>
-    )
-}
+	return <FlexBox flexDirection="column">{children}</FlexBox>;
+};
 
-export default Table
+export default Table;

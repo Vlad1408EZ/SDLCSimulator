@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import clx from "classnames";
 import s from "./table.module.scss";
 
 const HeadCell = ({ title, isFirstCell = false }) => {
-    return (
-        <span className={clx(s.headerCell, isFirstCell && s.first)}>{title}</span>
-    )
-}
+	return (
+		<span className={clx(s.headerCell, isFirstCell && s.first)}>{title}</span>
+	);
+};
 
-export default HeadCell
+export default HeadCell;
