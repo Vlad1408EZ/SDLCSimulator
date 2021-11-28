@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table cell with empty string equal to "-/-" 1`] = `
+<div
+  className="tableCell"
+>
+  <span>
+    -/-
+  </span>
+</div>
+`;
+
+exports[`Table cell with number has 2 values after 0 1`] = `
+<div
+  className="tableCell"
+>
+  <span>
+    123.15
+  </span>
+</div>
+`;

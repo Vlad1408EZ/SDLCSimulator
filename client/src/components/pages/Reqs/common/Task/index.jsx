@@ -1,34 +1,32 @@
-import React from 'react'
+import React from "react";
 import s from "./task.module.scss";
 import cs from "../../../../../scss/common.module.scss";
 import clx from "classnames";
-import Paper from '@mui/material/Paper';
-import Button from "../../../../common/ui-parts/Button"
-import FlexBox from '../../../../common/ui-parts/FlexBox';
+import Paper from "@mui/material/Paper";
+import Button from "../../../../common/ui-parts/Button";
+import FlexBox from "../../../../common/ui-parts/FlexBox";
 
-const Task = ({
-    onClick,
-    difficulty,
-    topic,
-    maxGrade
-}) => {
+const Task = ({ onClick, difficulty, topic, maxGrade }) => {
+	const handleClick = () => onClick && onClick();
 
-    const handleClick = () => onClick && onClick();
+	return (
+		<Paper elevation={1} className={s.container}>
+			<FlexBox flexDirection="column">
+				<span className={s.taskTitle}>{topic}</span>
+				<p className={s.taskDescription}>
+					Складність: {difficulty}
+					<br />
+					Максимальний бал: {maxGrade}
+				</p>
+				<Button
+					onClick={handleClick}
+					wrapperClassName={clx(cs.flex, cs.justifyContentEnd)}
+				>
+					Переглянути
+				</Button>
+			</FlexBox>
+		</Paper>
+	);
+};
 
-    return (
-        <Paper elevation={1} className={s.container}>
-            <FlexBox flexDirection="column" >
-                <span className={s.taskTitle}>{topic}</span>
-                <p className={s.taskDescription}>
-                    Складність: {difficulty}
-                    <br />
-                    Максимальний бал: {maxGrade}
-                </p>
-                <Button onClick={handleClick} wrapperClassName={clx(cs.flex, cs.justifyContentEnd)}>Переглянути</Button>
-            </FlexBox>
-
-        </Paper>
-    )
-}
-
-export default Task
+export default Task;

@@ -1,12 +1,12 @@
-import React from 'react'
-import StudentView from './StudentView/StudentView'
+import React from "react";
+import StudentView from "./StudentView/StudentView";
 
 const Reqs = () => {
-    return (
-        <div>
-            <StudentView />
-        </div>
-    )
-}
+	return (
+		<div>
+			<StudentView />
+		</div>
+	);
+};
 
-export default Reqs
+export default Reqs;

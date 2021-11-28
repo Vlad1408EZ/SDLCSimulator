@@ -1,1 +1,1 @@
-export { default } from "./Reqs"
+export { default } from "./Reqs";
