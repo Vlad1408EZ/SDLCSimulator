@@ -23,6 +23,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             {
                 var resValue = res.Value;
                 var standardValue = standard[res.Key];
+                correctAnswersNumber -= standardValue.Count - resValue.Count;
                 for (int i = 0; i < resValue.Count; i++)
                 {
                     if (resValue[i] == standardValue[i])

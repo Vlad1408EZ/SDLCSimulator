@@ -12,6 +12,7 @@ namespace SDLCSimulator_Data
         public TaskTypeEnum Type { get; set; }
         public DifficultyEnum Difficulty { get; set; }
         public MaxGradeEnum MaxGrade { get; set; }
+        public TaskTimeEnum TaskTime { get; set; }
         public ErrorRateEnum ErrorRate { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }

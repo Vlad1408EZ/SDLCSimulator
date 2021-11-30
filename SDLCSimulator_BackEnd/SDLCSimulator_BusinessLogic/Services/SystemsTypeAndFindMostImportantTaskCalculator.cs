@@ -23,7 +23,8 @@ namespace SDLCSimulator_BusinessLogic.Services
             {
                 var resValue = res.Value;
                 var standardValue = standard[res.Key];
-                foreach(var elem in resValue)
+                correctAnswersNumber -= standardValue.Count - resValue.Count;
+                foreach (var elem in resValue)
                 {
                     if(standardValue.Contains(elem))
                     {
