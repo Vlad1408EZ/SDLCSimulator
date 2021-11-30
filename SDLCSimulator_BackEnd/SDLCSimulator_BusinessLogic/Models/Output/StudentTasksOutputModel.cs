@@ -9,6 +9,7 @@ namespace SDLCSimulator_BusinessLogic.Models.Output
         public TaskTypeEnum Type { get; set; }
         public DifficultyEnum Difficulty { get; set; }
         public int MaxGrade { get; set; }
+        public int TaskTime { get; set; }
         public decimal ErrorRate { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }
