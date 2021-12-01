@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      - SA_PASSWORD=${DB_PASSWORD}
+      - ACCEPT_EULA=Y
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    ports:
+      - ${DB_PORT}:1433
+
+  core-app:
+    build:
+      context: ./SDLCSimulator_BackEnd
+      dockerfile: ./Dockerfile.dev
+    environment:
+      - ConnectionStrings__ConnectionString=${CONNECTION_STRING}
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__ExpirationDate=${JWT_EXPIRATION_DATE}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+      - DOTNET_USE_POLLING_FILE_WATCHER=${DOTNET_USE_POLLING_FILE_WATCHER}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - /app/obj
+      - ./SDLCSimulator_BackEnd:/app
+    depends_on:
+      - db
+    ports:
+      - ${APP_CORE_HTTP_PORT}:${APP_CORE_HTTP_PORT}
+      - ${APP_CORE_HTTPS_PORT}:${APP_CORE_HTTPS_PORT}
+    command: >
+      bash -c "
+        dotnet-ef --project SDLCSimulator_BackEnd database update;
+        dotnet watch run -p SDLCSimulator_BackEnd --no-launch-profile;
+      "
+
+  react-app:
+    build:
+      context: ./client/
+      dockerfile: ./Dockerfile.dev
+    environment:
+      - REACT_APP_API_URI=${REACT_APP_API_URI}
+    volumes:
+      - /usr/src/app/node_modules
+      - ./client/:/usr/src/app
+    depends_on:
+      - core-app
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    stdin_open: true
+    command: npm start
+
+volumes:
+  sqlvolume:

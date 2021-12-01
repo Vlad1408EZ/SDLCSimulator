@@ -54,8 +54,6 @@ namespace SDLCSimulator_BackEnd
 
             app.UseCors("MyAllowSpecificOrigins");
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthentication();
