@@ -15,11 +15,13 @@ import {
 	saveTaskExecutionResult,
 } from "../../../../../../slices/tasksSlice";
 import { enqueueSnackbar, variants } from "../../../../../../slices/notificationsSlice";
+import { AVAILABLE_MODALS, toggleModal } from "../../../../../../slices/uiSlice";
+import { useTimer } from "../../../../../common/hooks/useTimer";
 
 const getItems = (blocks, prefix) =>
 	Array.isArray(blocks)
-		? blocks.map((b) => ({
-			id: `item-${Math.floor(Math.random() * 1000)}`,
+		? blocks.map((b, i) => ({
+			id: `item-${i}`,
 			prefix,
 			requiredPrefix: b.requiredPrefix,
 			content: b.value,
@@ -64,6 +66,9 @@ const Board = ({ task, config }) => {
 	const isExecutionFinished = useSelector(
 		(state) => state.tasks.taskExecution.isExecutionFinished
 	);
+	const isExecutionTimerRunning = useSelector(
+		(state) => state.tasks.taskExecution.isExecutionTimerRunning
+	);
 
 	const onDragEnd = (result) => {
 		if (!result.destination) return;
@@ -99,7 +104,7 @@ const Board = ({ task, config }) => {
 		setElements(listCopy);
 	};
 
-	const handleSubmit = () => dispatch(saveTaskExecutionResult(elements));
+	const handleSubmitExecResult = () => dispatch(saveTaskExecutionResult(elements));
 
 	const handleClear = () => {
 		// eslint-disable-next-line no-restricted-globals
@@ -109,15 +114,39 @@ const Board = ({ task, config }) => {
 
 	const handleGoBack = () => navigate("/reqs");
 
+	const [timer, startTimer, clearTimer] = useTimer(task.taskTime, handleSubmitExecResult);
+
+
+	useEffect(() => {
+		isExecutionTimerRunning && startTimer();
+	}, [isExecutionTimerRunning])
+
+
 	useEffect(() => {
 		if (!config.readonly || !task.result || !task.result.StandardOrResult || initReadonlyExec) return;
-		const result = Object.entries(task.result.StandardOrResult).reduce((ac, [key, valsArr]) => ({ ...ac, [key]: valsArr.map(value => ({ id: `item-${Math.floor(Math.random() * 1000)}`, content: value })) }), {})
+		const result = Object.entries(task.result.StandardOrResult)
+			.reduce((ac, [key, valsArr]) => ({
+				...ac,
+				[key]: valsArr.map(value => ({
+					id: `item-${Math.floor(Math.random() * 1000)}`,
+					content: value
+				}))
+			}), {});
 		setElements(result);
 		setInitReadonlyExec(true);
 	}, [task, config, initReadonlyExec])
 
 	useEffect(() => {
+		isExecutionFinished && clearTimer();
+	}, [isExecutionFinished])
+
+	useEffect(() => {
 		dispatch(initTaskExecution(task.id));
+		task.taskTime && !config?.readonly && dispatch(toggleModal({
+			[AVAILABLE_MODALS.TASK_TIME_WARNING]: {
+				open: true,
+			}
+		}));
 
 		return () => dispatch(resetTaskExecutionState());
 	}, []);
@@ -140,6 +169,15 @@ const Board = ({ task, config }) => {
 										{task.maxGrade} <br />
 										<span className={s.value}>Автор:</span> {task.author} <br />
 									</p>
+									{task?.taskTime && (
+										<pre className={s.timeData}>
+											<span className={s.value}>Часу залишилось:</span><br />
+											Години: {timer.time.h}<br />
+											Хвилини: {timer.time.m}<br />
+											Секунди: {timer.time.s}<br />
+										</pre>
+									)}
+
 								</div>
 								<Column
 									elements={elements[columns[0]]}
@@ -171,7 +209,7 @@ const Board = ({ task, config }) => {
 							<Button onClick={handleClear} buttonType={BTN_TYPE.CANCEL}>
 								Очистити
 							</Button>
-							<Button onClick={handleSubmit}>Зберегти результат</Button>
+							<Button onClick={handleSubmitExecResult}>Зберегти результат</Button>
 						</FlexBox>
 					)}
 				</FlexBox>

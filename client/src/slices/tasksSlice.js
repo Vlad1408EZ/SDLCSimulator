@@ -36,6 +36,7 @@ const initialState = {
 		errorCount: 0,
 		isSavingResult: false,
 		isExecutionFinished: false,
+		isExecutionTimerRunning: false
 	},
 };
 
@@ -69,6 +70,9 @@ export const tasksSlice = createSlice({
 		setIsSavingResult: (state, action) => {
 			state.taskExecution.isSavingResult = action.payload;
 		},
+		setIsExecutionTimerRunning: (state, action) => {
+			state.taskExecution.isExecutionTimerRunning = action.payload;
+		},
 		setFilterBy: (state, action) => {
 			state.taskFilterBy = action.payload;
 		},
@@ -88,6 +92,7 @@ export const {
 	finishTaskExecution,
 	incrementExecutingTaskErrors,
 	setIsSavingResult,
+	setIsExecutionTimerRunning,
 	setFilterBy,
 	setFilterOption
 } = tasksSlice.actions;
@@ -109,6 +114,7 @@ export const getStudentTasks = () => (dispatch) => {
 export const saveTaskExecutionResult = (results) => (dispatch, getState) => {
 	if (!results) return;
 	dispatch(setIsSavingResult(true));
+	dispatch(saveTaskExecutionResult(false));
 	const fkeys = Object.keys(results).filter((key) => key !== DEFAULT_COLUMN);
 	const standardOrResult = Object.fromEntries(
 		fkeys.map((key) => [key, results[key].map((obj) => obj.content)])
