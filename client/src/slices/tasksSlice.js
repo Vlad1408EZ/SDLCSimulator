@@ -5,10 +5,32 @@ import { AVAILABLE_MODALS, toggleModal } from "./uiSlice";
 
 export const DEFAULT_COLUMN = "Доступні варіанти";
 
+export const FILTER_BY = {
+	DEFAULT: { value: "default", label: "По замовчуванню" },
+	DIFFICULTY: { value: "difficulty", label: "Складність" },
+	TYPE: { value: "type", label: "Тип завдання" },
+}
+
+export const FILTER_OPTIONS = {
+	DEFAULT: [],
+	DIFFICULTY: [{ value: "HARD", label: "Hard" }, { value: "MEDIUM", label: "Medium" }, { value: "EASY", label: "Easy" }],
+	TYPE: [{ value: "ORDER_BY_IMPORTANCE", label: "DnD-порядок і важливість" }, { value: "MOST_IMPORTANT", label: "DnD-найважливіші" },]
+}
+
+export const FILTER_OPTION_TYPE = {
+	HARD: "Hard",
+	MEDIUM: "Medium",
+	EASY: "Easy",
+	ORDER_BY_IMPORTANCE: "RequirementsTypeAndOrderByImportance",
+	MOST_IMPORTANT: "SystemsTypeAndFindMostImportant",
+}
+
 const initialState = {
 	isLoading: false,
 	studentTasks: [],
 	teacherTasks: [],
+	taskFilterBy: FILTER_BY.DEFAULT.value,
+	taskFilterOption: null,
 	taskExecution: {
 		taskId: null,
 		errorCount: 0,
@@ -47,6 +69,12 @@ export const tasksSlice = createSlice({
 		setIsSavingResult: (state, action) => {
 			state.taskExecution.isSavingResult = action.payload;
 		},
+		setFilterBy: (state, action) => {
+			state.taskFilterBy = action.payload;
+		},
+		setFilterOption: (state, action) => {
+			state.taskFilterOption = action.payload;
+		}
 	},
 });
 
@@ -60,6 +88,8 @@ export const {
 	finishTaskExecution,
 	incrementExecutingTaskErrors,
 	setIsSavingResult,
+	setFilterBy,
+	setFilterOption
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
