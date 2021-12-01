@@ -8,15 +8,17 @@ const getTaskConfig = (type, readonly = false) => {
 
 	const config = { header: "", limitations: null, readonly };
 	if (type === "RequirementsTypeAndOrderByImportance")
-		config.header = "Перетягуйте блоки у відповідні секції, які вважаєте вірними. Враховуйте важливість і порядок.";
+		config.header =
+			"Перетягуйте блоки у відповідні секції, які вважаєте вірними. Враховуйте важливість і порядок.";
 	else if (type === "SystemsTypeAndFindMostImportant") {
-		config.header = "Перетягуйте блоки у відповідні секції. Враховуйте лише найвіжливіші блоки(макс. 3 в секції).";
+		config.header =
+			"Перетягуйте блоки у відповідні секції. Враховуйте лише найвіжливіші блоки(макс. 3 в секції).";
 		config.limitations = {
-			blocksInCol: 3
-		}
+			blocksInCol: 3,
+		};
 	}
 	return config;
-}
+};
 
 const TaskExecution = ({ taskId, readonly = false, execResult = null }) => {
 	const studentTasks = useSelector((state) => state.tasks.studentTasks);
@@ -53,7 +55,10 @@ const TaskExecution = ({ taskId, readonly = false, execResult = null }) => {
 		parsedTask && (
 			<>
 				<ExecutionResultModal />
-				<Board task={parsedTask} config={getTaskConfig(parsedTask.type, readonly)} />
+				<Board
+					task={parsedTask}
+					config={getTaskConfig(parsedTask.type, readonly)}
+				/>
 			</>
 		)
 	);
