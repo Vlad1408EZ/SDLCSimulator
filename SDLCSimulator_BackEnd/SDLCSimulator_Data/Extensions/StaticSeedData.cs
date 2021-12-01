@@ -30,11 +30,13 @@ namespace SDLCSimulator_Data.Extensions
                 .HasData(CreateGroupTeacher(1,2),CreateGroupTeacher(2,2));
 
             modelBuilder.Entity<Task>()
-                .HasData(CreateTask(1, TaskTypeEnum.RequirementsTypeAndOrderByImportance, DifficultyEnum.Medium, MaxGradeEnum.MediumGrade, ErrorRateEnum.MediumErrorRate,
+                .HasData(CreateTask(1, TaskTypeEnum.RequirementsTypeAndOrderByImportance, TaskTimeEnum.MediumTime,
+                    DifficultyEnum.Medium, MaxGradeEnum.MediumGrade, ErrorRateEnum.MediumErrorRate,
                     "Вимоги до системи роботи магазину ювелірних виробів",2));
 
             modelBuilder.Entity<Task>()
-                .HasData(CreateTask(2, TaskTypeEnum.SystemsTypeAndFindMostImportant, DifficultyEnum.Hard, MaxGradeEnum.HardGrade, ErrorRateEnum.HardErrorRate,
+                .HasData(CreateTask(2, TaskTypeEnum.SystemsTypeAndFindMostImportant, TaskTimeEnum.HardTime,
+                    DifficultyEnum.Hard, MaxGradeEnum.HardGrade, ErrorRateEnum.HardErrorRate,
                     "Вибір найважливіших вимог для декількох систем", 2));
 
             modelBuilder.Entity<GroupTask>()
@@ -64,7 +66,7 @@ namespace SDLCSimulator_Data.Extensions
             return new() { Id = id, FirstName = firstName, LastName = lastName, Email = email, Password = password, Role = role };
         }
 
-        private static Task CreateTask(int id, TaskTypeEnum type, DifficultyEnum difficulty, MaxGradeEnum maxGrade, ErrorRateEnum errorRate,
+        private static Task CreateTask(int id, TaskTypeEnum type, TaskTimeEnum time, DifficultyEnum difficulty, MaxGradeEnum maxGrade, ErrorRateEnum errorRate,
             string topic, int teacherId)
         {
             return new()
@@ -72,6 +74,7 @@ namespace SDLCSimulator_Data.Extensions
                 Id = id,Type = type, Difficulty = difficulty,
                 ErrorRate = errorRate,
                 MaxGrade = maxGrade,
+                TaskTime = time,
                 Topic = topic, Description = CreateJsonTaskDescription(type),
                 Standard = CreateJsonTaskStandard(type),
                 TeacherId = teacherId

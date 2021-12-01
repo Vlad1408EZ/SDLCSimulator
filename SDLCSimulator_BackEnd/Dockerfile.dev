@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0
+
+RUN useradd -m -s $(which bash) core
+RUN mkdir /app && chown core:core /app
+
+USER core
+
+WORKDIR /app
+
+ENV PATH $PATH:/home/core/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef
+
+COPY */*.csproj ./
+RUN for file in $(ls *.csproj); do dotnet restore ${file}; done
+
+RUN dotnet dev-certs https

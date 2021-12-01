@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SDLCSimulator_Data;
 
 namespace SDLCSimulator_Data.Migrations
 {
     [DbContext(typeof(SDLCSimulatorDbContext))]
-    partial class SDLCSimulatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211130194309_AddTimeSupportForTask")]
+    partial class AddTimeSupportForTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,9 +237,6 @@ namespace SDLCSimulator_Data.Migrations
                     b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -261,7 +260,6 @@ namespace SDLCSimulator_Data.Migrations
                             Email = "іван.іванов.пз@lpnu.ua",
                             FirstName = "Іван",
                             GroupId = 1,
-                            IsDeleted = false,
                             LastName = "Іванов",
                             Password = "AKXwmMIdR9fEXaikvLavw33r0zyiXHBLBk4MJELb5RNwoyMCsi8NBf8advWXCTQ54A==",
                             Role = 0
@@ -271,7 +269,6 @@ namespace SDLCSimulator_Data.Migrations
                             Id = 2,
                             Email = "андрій.фоменко.викладач@lpnu.ua",
                             FirstName = "Андрій",
-                            IsDeleted = false,
                             LastName = "Фоменко",
                             Password = "AEIatg7ShLybH2927m5UTtOGO2EjSBB6JuXbkhhhUHDIQAH+tKRvN81u9R7ZqhzOcA==",
                             Role = 1
@@ -281,7 +278,6 @@ namespace SDLCSimulator_Data.Migrations
                             Id = 3,
                             Email = "сергій.федецький.адмін@lpnu.ua",
                             FirstName = "Сергій",
-                            IsDeleted = false,
                             LastName = "Федецький",
                             Password = "AGiprihD8YNNbQk2w5XdYqNtbOxu8Qly+7gmJloWjaKPdPWSAHIb2SAbMsaRO08e6Q==",
                             Role = 2

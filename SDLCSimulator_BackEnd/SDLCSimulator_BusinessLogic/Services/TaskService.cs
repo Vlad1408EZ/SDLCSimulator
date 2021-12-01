@@ -67,6 +67,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Standard = t.Standard,
                 ErrorRate = ErrorRateGetter.GetErrorRate(t.ErrorRate),
                 MaxGrade = (int)t.MaxGrade,
+                TaskTime = (int)t.TaskTime,
                 TeacherFirstName = t.Teacher.FirstName,
                 TeacherLastName = t.Teacher.LastName,
                 StudentsTaskResults = t.TaskResults.Select(tr => new StudentTaskResultOutputModel()
@@ -133,6 +134,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Standard = t.Standard,
                 ErrorRate = ErrorRateGetter.GetErrorRate(t.ErrorRate),
                 MaxGrade = (int)t.MaxGrade,
+                TaskTime = (int)t.TaskTime,
                 Groups = t.GroupTasks.Select(gt => new GroupOutputModel()
                 {
                     Id = gt.Group.Id,
@@ -170,6 +172,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Difficulty = model.Difficulty,
                 MaxGrade = GetMaxGrade(model.Difficulty),
                 ErrorRate = GetErrorRate(model.Difficulty),
+                TaskTime = GetTaskTime(model.Difficulty),
                 Topic = model.Topic,
                 Description = JsonConvert.SerializeObject(model.Description),
                 Standard = JsonConvert.SerializeObject(model.Standard),
@@ -200,6 +203,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Topic = task.Topic,
                 Description = task.Description,
                 Standard = task.Standard,
+                TaskTime =(int)task.TaskTime,
                 ErrorRate = ErrorRateGetter.GetErrorRate(task.ErrorRate),
                 MaxGrade = (int) task.MaxGrade,
                 Groups = groups.Select(g => new GroupOutputModel()
@@ -237,6 +241,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             task.Type = model.Type;
             task.Difficulty = model.Difficulty;
             task.MaxGrade = GetMaxGrade(model.Difficulty);
+            task.TaskTime = GetTaskTime(model.Difficulty);
             task.ErrorRate = GetErrorRate(model.Difficulty);
             task.Topic = model.Topic;
             task.Description = JsonConvert.SerializeObject(model.Description);
@@ -263,6 +268,7 @@ namespace SDLCSimulator_BusinessLogic.Services
                 Standard = task.Standard,
                 ErrorRate = ErrorRateGetter.GetErrorRate(task.ErrorRate),
                 MaxGrade = (int)task.MaxGrade,
+                TaskTime = (int)task.TaskTime,
                 Groups = groups.Select(g => new GroupOutputModel()
                 {
                     Id = g.Id,
@@ -301,6 +307,20 @@ namespace SDLCSimulator_BusinessLogic.Services
                     ErrorRateEnum.MediumErrorRate,
                 DifficultyEnum.Hard =>
                      ErrorRateEnum.HardErrorRate,
+                _ => 0
+            };
+        }
+
+        private static TaskTimeEnum GetTaskTime(DifficultyEnum difficulty)
+        {
+            return difficulty switch
+            {
+                DifficultyEnum.Easy =>
+                 TaskTimeEnum.EasyTime,
+                DifficultyEnum.Medium =>
+                    TaskTimeEnum.MediumTime,
+                DifficultyEnum.Hard =>
+                     TaskTimeEnum.HardTime,
                 _ => 0
             };
         }

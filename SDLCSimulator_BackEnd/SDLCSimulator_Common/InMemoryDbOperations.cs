@@ -24,10 +24,12 @@ namespace SDLCSimulator_Common
 
             dbContext.GroupTeachers.AddRange(CreateGroupTeacher(1, 2), CreateGroupTeacher(2, 2));
 
-            dbContext.Tasks.Add(CreateTask(1, TaskTypeEnum.RequirementsTypeAndOrderByImportance, DifficultyEnum.Medium, MaxGradeEnum.MediumGrade, ErrorRateEnum.MediumErrorRate,
+            dbContext.Tasks.Add(CreateTask(1, TaskTypeEnum.RequirementsTypeAndOrderByImportance, TaskTimeEnum.MediumTime,
+                    DifficultyEnum.Medium, MaxGradeEnum.MediumGrade, ErrorRateEnum.MediumErrorRate,
                     "Вимоги до системи роботи магазину ювелірних виробів", 2));
 
-            dbContext.Tasks.Add(CreateTask(2, TaskTypeEnum.SystemsTypeAndFindMostImportant, DifficultyEnum.Hard, MaxGradeEnum.HardGrade, ErrorRateEnum.HardErrorRate,
+            dbContext.Tasks.Add(CreateTask(2, TaskTypeEnum.SystemsTypeAndFindMostImportant, TaskTimeEnum.HardTime,
+                    DifficultyEnum.Hard, MaxGradeEnum.HardGrade, ErrorRateEnum.HardErrorRate,
                     "Вибір найважливіших вимог для декількох систем", 2));
 
             dbContext.GroupTasks.AddRange(CreateGroupTask(1, 1), CreateGroupTask(1, 2));
@@ -89,8 +91,8 @@ namespace SDLCSimulator_Common
             return new() { Id = id, FirstName = firstName, LastName = lastName, Email = email, Password = password, Role = role };
         }
 
-        public static Task CreateTask(int id, TaskTypeEnum type, DifficultyEnum difficulty, MaxGradeEnum maxGrade, ErrorRateEnum errorRate,
-            string topic, int teacherId)
+        private static Task CreateTask(int id, TaskTypeEnum type, TaskTimeEnum time, DifficultyEnum difficulty, MaxGradeEnum maxGrade, ErrorRateEnum errorRate,
+           string topic, int teacherId)
         {
             return new()
             {
@@ -99,6 +101,7 @@ namespace SDLCSimulator_Common
                 Difficulty = difficulty,
                 ErrorRate = errorRate,
                 MaxGrade = maxGrade,
+                TaskTime = time,
                 Topic = topic,
                 Description = CreateJsonTaskDescription(type),
                 Standard = CreateJsonTaskStandard(type),
