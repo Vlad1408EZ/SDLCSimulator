@@ -209,7 +209,9 @@ const Board = ({ task, config }) => {
 							<Button onClick={handleClear} buttonType={BTN_TYPE.CANCEL}>
 								Очистити
 							</Button>
-							<Button onClick={handleSubmitExecResult}>Зберегти результат</Button>
+							<Button wrapperClassName={cs.marginLeft30} onClick={handleSubmitExecResult}>
+								Зберегти результат
+							</Button>
 						</FlexBox>
 					)}
 				</FlexBox>

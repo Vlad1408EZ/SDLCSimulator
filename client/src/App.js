@@ -12,6 +12,7 @@ import PrivatePage from "./components/common/PrivateRoute";
 import Reqs from "./components/pages/Reqs";
 import ErrorPage from "./components/pages/404";
 import StudentAccount from "./components/pages/UserAccount";
+import AdminPage from "./components/pages/Admin";
 import Notifier from "./components/common/layout/Notifier";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
 								path="/account"
 								element={<PrivatePage component={StudentAccount} />}
 							/>
+						</Route>
+						<Route path="/admin" excat element={<AdminPage />} >
+							<Route path="/admin/users" element={<PrivatePage component={AdminPage} />} />
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>

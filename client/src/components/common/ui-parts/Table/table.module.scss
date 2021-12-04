@@ -5,7 +5,6 @@ $green: #309791;
 $greenTransparent: rgba(60, 193, 185, 0.2);
 
 .headerCell {
-	flex: 1;
 	height: 20px;
 	color: $greyColor;
 	font-size: 12px;
@@ -18,6 +17,7 @@ $greenTransparent: rgba(60, 193, 185, 0.2);
 .tableRow {
 	color: #000;
 	position: relative;
+	width: 100%;
 	height: fit-content;
 	max-height: 30px;
 	&.withBorderBottom::after {
@@ -51,9 +51,8 @@ $greenTransparent: rgba(60, 193, 185, 0.2);
 }
 
 .tableCell {
-	flex: 1;
 	height: 30px;
-
+	padding: 0 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -68,6 +67,9 @@ $greenTransparent: rgba(60, 193, 185, 0.2);
 	&.first {
 		justify-content: start;
 	}
+}
+.flex1 {
+	flex: 1;
 }
 
 .seeMoreButton {

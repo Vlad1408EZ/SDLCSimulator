@@ -37,3 +37,17 @@ export const InputStandard = (props) => {
 
 	return <MuiInput {...newProps} />;
 };
+
+export const OutlinedInput = (props) => {
+	const newProps = {
+		color: "secondary",
+		notched: "false",
+		classes: {
+			root: s.outlinedRoot,
+			...(props.classes || {}),
+		},
+		..._.omit(props, ["classes"]),
+	};
+
+	return <TextField variant="outlined"  {...newProps} />;
+};
