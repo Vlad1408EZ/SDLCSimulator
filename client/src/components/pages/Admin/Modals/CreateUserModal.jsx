@@ -32,6 +32,13 @@ const defaultFormState = {
     groups: []
 };
 
+const getUserRoleForEmail = (role) => {
+    if (role === 0) return "пз";
+    if (role === 1) return "викладач";
+    if (role === 2) return "адмін";
+    else return role;
+}
+
 const CreateUserModal = () => {
     const dispatch = useDispatch();
     const modal = useSelector(
@@ -44,10 +51,21 @@ const CreateUserModal = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const handleDataChange = (key, value) => {
-        setUserData(prev => ({
-            ...prev,
-            [key]: value
-        }))
+
+        setUserData(prev => {
+            const email = key === "firstName"
+                ? `${value.toLowerCase()}.${prev.lastName.toLowerCase()}.${getUserRoleForEmail(prev.role)}@lpnu.ua`
+                : key === "lastName"
+                    ? `${prev.firstName.toLowerCase()}.${value.toLowerCase()}.${getUserRoleForEmail(prev.role)}@lpnu.ua`
+                    : key === "role"
+                        ? `${prev.firstName.toLowerCase()}.${prev.lastName.toLowerCase()}.${getUserRoleForEmail(value)}@lpnu.ua`
+                        : prev.email;
+            return {
+                ...prev,
+                email,
+                [key]: value,
+            }
+        })
     }
 
     const handleShowPasswordClick = () =>
@@ -78,15 +96,15 @@ const CreateUserModal = () => {
             </DialogTitle>
             <DialogContent className={clx(cs.padding30x50, s.container)}>
                 <OutlinedInput
-                    label="Прізвище"
-                    value={userData.lastName}
-                    onChange={(e) => handleDataChange("lastName", e.target.value)}
-                    className={cs.marginBottom20}
-                />
-                <OutlinedInput
                     label="Ім'я"
                     value={userData.firstName}
                     onChange={(e) => handleDataChange("firstName", e.target.value)}
+                    className={cs.marginBottom20}
+                />
+                <OutlinedInput
+                    label="Прізвище"
+                    value={userData.lastName}
+                    onChange={(e) => handleDataChange("lastName", e.target.value)}
                     className={cs.marginBottom20}
                 />
                 <OutlinedInput

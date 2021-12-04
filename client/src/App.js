@@ -31,7 +31,7 @@ function App() {
 								element={<PrivatePage component={StudentAccount} />}
 							/>
 						</Route>
-						<Route path="/admin" excat element={<AdminPage />} />
+						<Route path="/admin" element={<PrivatePage component={AdminPage} />} />
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</SnackbarProvider>

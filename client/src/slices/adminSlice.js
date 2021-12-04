@@ -12,9 +12,9 @@ const initialState = {
         isCreationLoading: false,
         groups: [],
         roles: [
-            { value: 0, label: "Student" },
-            { value: 1, label: "Teacher" },
-            { value: 2, label: "Admin" },
+            { value: 0, label: "Студент" },
+            { value: 1, label: "Викладач" },
+            // { value: 2, label: "Admin" },
         ]
     }
 };
