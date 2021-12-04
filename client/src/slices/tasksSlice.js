@@ -31,6 +31,7 @@ const initialState = {
 	teacherTasks: [],
 	taskFilterBy: FILTER_BY.DEFAULT.value,
 	taskFilterOption: null,
+	taskSearchValue: "",
 	taskExecution: {
 		taskId: null,
 		errorCount: 0,
@@ -78,6 +79,9 @@ export const tasksSlice = createSlice({
 		},
 		setFilterOption: (state, action) => {
 			state.taskFilterOption = action.payload;
+		},
+		setTaskSearchValue: (state, action) => {
+			state.taskSearchValue = action.payload;
 		}
 	},
 });
@@ -94,7 +98,8 @@ export const {
 	setIsSavingResult,
 	setIsExecutionTimerRunning,
 	setFilterBy,
-	setFilterOption
+	setFilterOption,
+	setTaskSearchValue
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
@@ -141,3 +146,17 @@ export const saveTaskExecutionResult = (results) => (dispatch, getState) => {
 		.catch((err) => handleError(err))
 		.finally(() => dispatch(setIsSavingResult(false)));
 };
+
+
+export const findStudentTasksBySearchValue = (value) => (dispatch) => {
+	dispatch(setIsLoading(true));
+	dispatch(setTaskSearchValue(value));
+	getStudentTasksAPI({
+		params: new URLSearchParams(`Topic=${value}`)
+	})
+		.then(res => {
+			dispatch(setStudentTasks(res.data));
+		})
+		.catch((err) => handleError(err))
+		.finally(() => dispatch(setIsLoading(false)));
+}
