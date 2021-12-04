@@ -102,7 +102,6 @@ export const deleteUser = (uid) => (dispatch, getState) => {
             dispatch(enqueueSnackbar("Користувача успішно видалено", variants.SUCCESS));
         })
         .catch((res) => {
-            console.log(res.response)
             handleError(res.response)
         })
         .finally(() => dispatch(setIsUCreationLoading(false)));

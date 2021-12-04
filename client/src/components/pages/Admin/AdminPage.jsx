@@ -40,9 +40,10 @@ const AdminPage = () => {
     const dispatch = useDispatch();
     const { users, isLoading } = useSelector(state => state.admin);
 
-    const students = useMemo(() => users.filter(u => u.role === "Student"), [users])
-    const teachers = useMemo(() => users.filter(u => u.role === "Teacher"), [users])
-    const admins = useMemo(() => users.filter(u => u.role === "Admin"), [users])
+    const filteredUsers = useMemo(() => users.filter(u => !u.isDeleted), [users]);
+    const students = useMemo(() => filteredUsers.filter(u => u.role === "Student"), [filteredUsers]);
+    const teachers = useMemo(() => filteredUsers.filter(u => u.role === "Teacher"), [filteredUsers]);
+    const admins = useMemo(() => filteredUsers.filter(u => u.role === "Admin"), [filteredUsers]);
 
 
     const handleNewUserClick = () => {
