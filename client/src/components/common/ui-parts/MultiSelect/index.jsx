@@ -20,7 +20,8 @@ const MenuProps = {
 
 export default function MultipleSelectCheckmarks({
   label = "",
-  options = []
+  options = [],
+  onChange
 }) {
   const [selectedValues, setSelectedValues] = React.useState([]);
 
@@ -28,10 +29,9 @@ export default function MultipleSelectCheckmarks({
     const {
       target: { value },
     } = event;
-    setSelectedValues(
-      // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    const newVals = typeof value === "string" ? value.split(",") : value;
+    onChange && onChange(newVals);
+    setSelectedValues(newVals);
   };
 
   return (

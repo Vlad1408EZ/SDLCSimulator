@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllGroupsAPI, getUsersAPI } from "../api/adminAPI";
-import { handleError } from "./notificationsSlice";
+import { getAllGroupsAPI } from "../api/adminAPI";
+import { createUserAPI, deleteUserAPI, getUsersAPI } from "../api/userAPI";
+import { enqueueSnackbar, handleError, variants } from "./notificationsSlice";
+import { AVAILABLE_MODALS, toggleModal } from "./uiSlice";
 
 
 const initialState = {
@@ -70,5 +72,38 @@ export const getAllGroups = () => (dispatch) => {
             dispatch(setUCreationGroups(groups));
         })
         .catch((err) => handleError(err))
+        .finally(() => dispatch(setIsUCreationLoading(false)));
+};
+
+export const createUser = (data) => (dispatch, getState) => {
+    dispatch(setIsUCreationLoading(true));
+    createUserAPI(data)
+        .then((res) => {
+            const users = getState().admin.users;
+            dispatch(setUsers([...users, res.data]));
+            dispatch(enqueueSnackbar("Користувача успішно створено", variants.SUCCESS));
+            dispatch(toggleModal({
+                [AVAILABLE_MODALS.CREATE_USER]: false,
+            }));
+        })
+        .catch((res) => {
+            handleError(res.response)
+        })
+        .finally(() => dispatch(setIsUCreationLoading(false)));
+};
+
+
+export const deleteUser = (uid) => (dispatch, getState) => {
+    dispatch(setIsUCreationLoading(true));
+    deleteUserAPI(uid)
+        .then(() => {
+            const users = getState().admin.users;
+            dispatch(setUsers(users.filter(u => u.id !== uid)));
+            dispatch(enqueueSnackbar("Користувача успішно видалено", variants.SUCCESS));
+        })
+        .catch((res) => {
+            console.log(res.response)
+            handleError(res.response)
+        })
         .finally(() => dispatch(setIsUCreationLoading(false)));
 };

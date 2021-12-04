@@ -12,13 +12,13 @@ import {
     TableCell,
     HeadCell
 } from '../../common/ui-parts/Table'
-import { getUsers } from '../../../slices/adminSlice'
+import { deleteUser, getUsers } from '../../../slices/adminSlice'
 import FlexBox from '../../common/ui-parts/FlexBox';
 import Button from '../../common/ui-parts/Button';
 import { AVAILABLE_MODALS, toggleModal } from '../../../slices/uiSlice';
 import CreateUserModal from './Modals/CreateUserModal';
 
-const generateUserRows = (user) => {
+const generateUserRows = (user, onDelete) => {
     if (!user) return null;
     return (
         <TableRow key={user.id} rowWidth={1100}>
@@ -29,7 +29,7 @@ const generateUserRows = (user) => {
             <TableCell value={user.groups} cellWidth={150} />
             <FlexBox justifyContent="spaceAround" alignItems="center" className={s.tableActions}>
                 <Edit />
-                <Trash2 />
+                <Trash2 onClick={onDelete} />
             </FlexBox>
         </TableRow>
     )
@@ -74,11 +74,11 @@ const AdminPage = () => {
                         <HeadCell title="Дії" cellWidth={100} />
                     </TableRow >
                     <TableRow sectionName="Студенти" coloredBackground showBorderBottom={false} />
-                    {students.map(generateUserRows)}
+                    {students.map(u => generateUserRows(u, () => dispatch(deleteUser(u.id))))}
                     <TableRow sectionName="Викладачі" coloredBackground showBorderBottom={false} />
-                    {teachers.map(generateUserRows)}
+                    {teachers.map(u => generateUserRows(u, () => dispatch(deleteUser(u.id))))}
                     <TableRow sectionName="Адміністратори" coloredBackground showBorderBottom={false} />
-                    {admins.map(generateUserRows)}
+                    {admins.map(u => generateUserRows(u, () => dispatch(deleteUser(u.id))))}
 
                 </Table>
             </Paper>
