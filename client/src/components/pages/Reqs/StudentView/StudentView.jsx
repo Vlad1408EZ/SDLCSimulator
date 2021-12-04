@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import clx from "classnames";
@@ -9,6 +9,7 @@ import {
 	FILTER_BY,
 	FILTER_OPTIONS,
 	FILTER_OPTION_TYPE,
+	findStudentTasksBySearchValue,
 	getStudentTasks,
 	setFilterBy,
 	setFilterOption,
@@ -18,6 +19,7 @@ import Task from "../common/Task";
 import TaskList from "../common/TaskList";
 import TaskExecution from "./TaskExecution/TaskExecutionPage";
 import FlexBox from "../../../common/ui-parts/FlexBox";
+import SearchInput from "../../../common/ui-parts/SearchInput";
 
 const getFilteredTasks = (taskFilterOption, taskFilterBy, tasks) => {
 	if (!taskFilterOption) return tasks;
@@ -36,7 +38,7 @@ const StudentView = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { isLoading, studentTasks, taskFilterBy, taskFilterOption } =
+	const { isLoading, studentTasks, taskFilterBy, taskFilterOption, taskSearchValue } =
 		useSelector((state) => state.tasks);
 	const [taskId, setTaskId] = useState(null);
 
@@ -45,9 +47,11 @@ const StudentView = () => {
 		[taskFilterOption, taskFilterBy, studentTasks]
 	);
 
-	const handleTaskClick = (id) => {
-		navigate(`?taskId=${id}`);
-	};
+	const handleTaskClick = (id) => navigate(`?taskId=${id}`);
+
+	const handleSearchValueChange = useCallback((newValue) => {
+		dispatch(findStudentTasksBySearchValue(newValue));
+	}, [])
 
 	const handleFilterByChange = (newValue) => dispatch(setFilterBy(newValue));
 
@@ -65,7 +69,6 @@ const StudentView = () => {
 		dispatch(getStudentTasks());
 	}, []);
 
-	if (isLoading) return <Loading />;
 
 	return taskId ? (
 		<TaskExecution
@@ -75,29 +78,40 @@ const StudentView = () => {
 		/>
 	) : (
 		<div className={clx(cs.width600, cs.marginAutoHorizontal)}>
-			<FlexBox className={cs.marginTop50}>
-				<CSelect
-					label="Фільтрувати"
-					value={taskFilterBy}
-					onChange={handleFilterByChange}
-					options={Object.values(FILTER_BY)}
-				/>
-				<CSelect
-					label="Опції фільтру"
-					value={taskFilterOption}
-					onChange={handleFilterOptionChange}
-					options={FILTER_OPTIONS[taskFilterBy.toUpperCase()]}
-				/>
-			</FlexBox>
-			<TaskList listLength={filteredStudentTasks.length}>
-				{filteredStudentTasks.map((task) => (
-					<Task
-						key={task.id}
-						{...task}
-						onClick={() => handleTaskClick(task.id)}
+			<FlexBox alignItems="end" justifyContent="spaceBetween" className={clx(cs.marginTop50, cs.marginBottom20)}>
+				<SearchInput
+					initValue={taskSearchValue}
+					onChange={(val) => handleSearchValueChange(val)}
+					placeholder="Пошук по назві.." />
+				<FlexBox>
+					<CSelect
+						label="Фільтрувати"
+						value={taskFilterBy}
+						className={cs.marginRight10}
+						onChange={handleFilterByChange}
+						options={Object.values(FILTER_BY)}
 					/>
-				))}
-			</TaskList>
+					<CSelect
+						label="Опції фільтру"
+						value={taskFilterOption}
+						onChange={handleFilterOptionChange}
+						options={FILTER_OPTIONS[taskFilterBy.toUpperCase()]}
+					/>
+				</FlexBox>
+			</FlexBox>
+			{isLoading ? (
+				<Loading />
+			) : (
+				<TaskList listLength={filteredStudentTasks.length}>
+					{filteredStudentTasks.map((task) => (
+						<Task
+							key={task.id}
+							{...task}
+							onClick={() => handleTaskClick(task.id)}
+						/>
+					))}
+				</TaskList>
+			)}
 		</div>
 	);
 };
