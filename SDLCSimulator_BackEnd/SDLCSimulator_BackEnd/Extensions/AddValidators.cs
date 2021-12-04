@@ -14,6 +14,7 @@ namespace SDLCSimulator_BackEnd.Extensions
             collection.AddScoped<IValidator<ChangePasswordRequestModel>,ChangePasswordRequestModelValidator>();
             collection.AddScoped<IValidator<CreateGroupInputModel>,CreateGroupInputModelValidator>();
             collection.AddScoped<IValidator<CreateUserInputModel>,CreateUserInputModelValidator>();
+            collection.AddScoped<IValidator<UpdateUserInfoModel>, UpdateUserInfoModelValidator>();
         }
     }
 }

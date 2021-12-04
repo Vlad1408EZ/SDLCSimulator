@@ -53,7 +53,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
                 if (!string.IsNullOrEmpty(filterInput.Topic))
                 {
-                    tasks = tasks.Where(t => t.Topic.StartsWith(filterInput.Topic)).ToList();
+                    tasks = tasks.Where(t => t.Topic.ToLower().StartsWith(filterInput.Topic.ToLower())).ToList();
                 }
             }
 
@@ -91,21 +91,21 @@ namespace SDLCSimulator_BusinessLogic.Services
             {
                 if (!string.IsNullOrEmpty(filterInput.FirstName))
                 {
-                    tasks = tasks.Where(t => t.TaskResults.Any(tr => tr.Student.FirstName.StartsWith(filterInput.FirstName))).ToList();
+                    tasks = tasks.Where(t => t.TaskResults.Any(tr => tr.Student.FirstName.ToLower().StartsWith(filterInput.FirstName.ToLower()))).ToList();
                     tasks.ForEach(t =>
                     {
                         t.TaskResults = t.TaskResults
-                            .Where(tr => tr.Student.FirstName.StartsWith(filterInput.FirstName)).ToList();
+                            .Where(tr => tr.Student.FirstName.ToLower().StartsWith(filterInput.FirstName.ToLower())).ToList();
                     });
                 }
 
                 if (!string.IsNullOrEmpty(filterInput.LastName))
                 {
-                    tasks = tasks.Where(t => t.TaskResults.Any(tr => tr.Student.LastName.StartsWith(filterInput.LastName))).ToList();
+                    tasks = tasks.Where(t => t.TaskResults.Any(tr => tr.Student.LastName.ToLower().StartsWith(filterInput.LastName.ToLower()))).ToList();
                     tasks.ForEach(t =>
                     {
                         t.TaskResults = t.TaskResults
-                            .Where(tr => tr.Student.LastName.StartsWith(filterInput.LastName)).ToList();
+                            .Where(tr => tr.Student.LastName.ToLower().StartsWith(filterInput.LastName.ToLower())).ToList();
                     });
                 }
                 if (filterInput.GroupNames != null)
@@ -120,7 +120,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
                 if (!string.IsNullOrEmpty(filterInput.Topic))
                 {
-                    tasks = tasks.Where(t => t.Topic.StartsWith(filterInput.Topic)).ToList();
+                    tasks = tasks.Where(t => t.Topic.ToLower().StartsWith(filterInput.Topic.ToLower())).ToList();
                 }
             }
 
