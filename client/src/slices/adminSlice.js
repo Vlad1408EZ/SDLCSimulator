@@ -60,7 +60,7 @@ export const getUsers = () => (dispatch) => {
         .then((res) => {
             dispatch(setUsers(res.data));
         })
-        .catch((err) => handleError(err))
+        .catch((err) => handleError(err, dispatch))
         .finally(() => dispatch(setIsLoading(false)));
 };
 
@@ -71,7 +71,7 @@ export const getAllGroups = () => (dispatch) => {
             const groups = res.data.map(obj => ({ label: obj.groupName, value: obj.groupName, id: obj.id }));
             dispatch(setUCreationGroups(groups));
         })
-        .catch((err) => handleError(err))
+        .catch((err) => handleError(err, dispatch))
         .finally(() => dispatch(setIsUCreationLoading(false)));
 };
 
@@ -86,9 +86,7 @@ export const createUser = (data) => (dispatch, getState) => {
                 [AVAILABLE_MODALS.CREATE_USER]: false,
             }));
         })
-        .catch((res) => {
-            handleError(res.response)
-        })
+        .catch((err) => handleError(err, dispatch))
         .finally(() => dispatch(setIsUCreationLoading(false)));
 };
 
@@ -101,8 +99,6 @@ export const deleteUser = (uid) => (dispatch, getState) => {
             dispatch(setUsers(users.filter(u => u.id !== uid)));
             dispatch(enqueueSnackbar("Користувача успішно видалено", variants.SUCCESS));
         })
-        .catch((res) => {
-            handleError(res.response)
-        })
+        .catch((err) => handleError(err, dispatch))
         .finally(() => dispatch(setIsUCreationLoading(false)));
 };
