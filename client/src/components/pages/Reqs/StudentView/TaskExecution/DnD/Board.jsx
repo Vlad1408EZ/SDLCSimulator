@@ -112,7 +112,7 @@ const Board = ({ task, config }) => {
 		shouldClear && setElements(initElementsState);
 	};
 
-	const handleGoBack = () => navigate("/reqs");
+	const handleGoBack = () => navigate(-1);
 
 	const [timer, startTimer, clearTimer] = useTimer(task.taskTime, handleSubmitExecResult);
 
@@ -202,7 +202,7 @@ const Board = ({ task, config }) => {
 				</Paper>
 				<FlexBox justifyContent="spaceBetween" className={cs.marginTop20}>
 					<Button onClick={handleGoBack} buttonType={BTN_TYPE.CANCEL}>
-						На головну
+						Повернутися назад
 					</Button>
 					{(!isExecutionFinished && !config?.readonly) && (
 						<FlexBox justifyContent="end">
