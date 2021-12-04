@@ -152,9 +152,9 @@ namespace SDLCSimulator_BusinessLogic.Services
         public async Task<bool> DeleteUserAsync(int userId)
         {
             var user = await _userRepository.GetSingleByConditionAsync(u => u.Id == userId);
-            if (user != null)
+            if (user == null)
             {
-                throw new InvalidOperationException($"Користувач з айді '{userId}' вже існує");
+                throw new InvalidOperationException($"Користувач з айді '{userId}' не існує");
             }
 
             user.IsDeleted = true;
