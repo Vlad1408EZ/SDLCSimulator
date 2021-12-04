@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Board from "./DnD/Board";
-import ExecutionResultModal from "./ExecutionResultModal";
+import ExecutionResultModal from "./Modals/ExecutionResultModal";
+import TimeWarningModal from "./Modals/TimeWarningModal";
 
 const getTaskConfig = (type, readonly = false) => {
 	if (!type) return;
@@ -55,6 +56,7 @@ const TaskExecution = ({ taskId, readonly = false, execResult = null }) => {
 		parsedTask && (
 			<>
 				<ExecutionResultModal />
+				<TimeWarningModal />
 				<Board
 					task={parsedTask}
 					config={getTaskConfig(parsedTask.type, readonly)}

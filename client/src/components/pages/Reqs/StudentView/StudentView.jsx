@@ -30,7 +30,6 @@ const getFilteredTasks = (taskFilterOption, taskFilterBy, tasks) => {
 		return tasks.filter(
 			(el) => el[taskFilterBy] === FILTER_OPTION_TYPE[taskFilterOption]
 		);
-	// if(taskFilterOption === FILTER_OPTION_TYPE.HARD) return (el) => el.difficulty;
 };
 
 const StudentView = () => {

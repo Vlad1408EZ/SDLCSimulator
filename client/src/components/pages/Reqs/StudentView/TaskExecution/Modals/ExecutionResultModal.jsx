@@ -1,14 +1,15 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AVAILABLE_MODALS, toggleModal } from "../../../../../slices/uiSlice";
+import { useNavigate } from "react-router";
+
+import { AVAILABLE_MODALS, toggleModal } from "../../../../../../slices/uiSlice";
 import {
 	Dialog,
 	DialogActions,
 	DialogContent,
 	DialogTitle,
-} from "../../../../common/ui-parts/Dialog";
-import Button, { BTN_TYPE } from "../../../../common/ui-parts/Button";
-import { useNavigate } from "react-router";
+} from "../../../../../common/ui-parts/Dialog";
+import Button, { BTN_TYPE } from "../../../../../common/ui-parts/Button";
 
 const ExecutionResultModal = () => {
 	const dispatch = useDispatch();
@@ -29,7 +30,10 @@ const ExecutionResultModal = () => {
 		[dispatch]
 	);
 
-	const onHome = useCallback(() => navigate("/reqs"), [navigate]);
+	const onHome = useCallback(() => {
+		navigate("/reqs");
+		onClose();
+	}, [navigate, onClose]);
 
 	return (
 		<Dialog open={open}>

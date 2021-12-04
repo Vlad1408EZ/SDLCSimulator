@@ -6,7 +6,11 @@ import Paper from "@mui/material/Paper";
 import Button from "../../../../common/ui-parts/Button";
 import FlexBox from "../../../../common/ui-parts/FlexBox";
 
-const Task = ({ onClick, difficulty, topic, maxGrade }) => {
+const SECONDS_IN_MIN = 60;
+
+const Task = ({ onClick, difficulty, topic, maxGrade, taskTime }) => {
+	const taskExecTime = taskTime ? taskTime / SECONDS_IN_MIN : "-/-";
+
 	const handleClick = () => onClick && onClick();
 
 	return (
@@ -17,6 +21,8 @@ const Task = ({ onClick, difficulty, topic, maxGrade }) => {
 					Складність: {difficulty}
 					<br />
 					Максимальний бал: {maxGrade}
+					<br />
+					Час на виконання: {taskExecTime} хвилин
 				</p>
 				<Button
 					onClick={handleClick}
