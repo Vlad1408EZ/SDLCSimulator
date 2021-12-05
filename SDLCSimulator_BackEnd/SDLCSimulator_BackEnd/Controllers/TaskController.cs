@@ -62,7 +62,7 @@ namespace SDLCSimulator_BackEnd.Controllers
         /// <returns>Tasks with task results for teacher.</returns>             
         [HttpGet("TeacherTasks")]
         [Authorize(Roles = "Teacher")]
-        [ProducesResponseType(typeof(List<StudentTasksOutputModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<TeacherTasksOutputModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFilteredTasksWithTaskResultsForTeacherAsync([FromQuery] TaskForTeacherFilterInput filterInput)
         {
             try
