@@ -49,7 +49,7 @@ const generateColumn = (columnTitles, blocks) =>
 		{}
 	);
 
-const Board = ({ task, config }) => {
+const Board = ({ task, config, isTeacherView = false, disableInfo = false }) => {
 	const columns = useMemo(
 		() => [DEFAULT_COLUMN, ...task.description.Columns],
 		[task]
@@ -129,6 +129,7 @@ const Board = ({ task, config }) => {
 				...ac,
 				[key]: valsArr.map(value => ({
 					id: `item-${Math.floor(Math.random() * 1000)}`,
+					requiredPrefix: key,
 					content: value
 				}))
 			}), {});
@@ -153,11 +154,11 @@ const Board = ({ task, config }) => {
 
 	return (
 		<DragDropContext onDragEnd={onDragEnd}>
-			<div className={s.boardWrapper}>
+			<div className={!disableInfo ? s.boardWrapper : ''}>
 				<Paper elevation={1} className={s.board}>
 					{elements ? (
 						<>
-							<FlexBox className={s.taskDescription} flexDirection="column">
+							{!disableInfo && <FlexBox className={s.taskDescription} flexDirection="column">
 								<div>
 									<p className={s.header}>
 										{config?.header ?? "Опис завдання не знайдено"}
@@ -169,7 +170,7 @@ const Board = ({ task, config }) => {
 										{task.maxGrade} <br />
 										<span className={s.value}>Автор:</span> {task.author} <br />
 									</p>
-									{task?.taskTime && (
+									{!isTeacherView && task?.taskTime && (
 										<pre className={s.timeData}>
 											<span className={s.value}>Часу залишилось:</span><br />
 											Години: {timer.time.h}<br />
@@ -179,12 +180,12 @@ const Board = ({ task, config }) => {
 									)}
 
 								</div>
-								<Column
+								{!isTeacherView && <Column
 									elements={elements[columns[0]]}
 									key={columns[0]}
 									prefix={columns[0]}
-								/>
-							</FlexBox>
+								/>}
+							</FlexBox>}
 							<FlexBox className={s.columns}>
 								{columns.slice(1).map((listKey) => (
 									<Column
@@ -200,7 +201,7 @@ const Board = ({ task, config }) => {
 						<CircularProgress />
 					)}
 				</Paper>
-				<FlexBox justifyContent="spaceBetween" className={cs.marginTop20}>
+				{!disableInfo && <FlexBox justifyContent="spaceBetween" className={cs.marginTop20}>
 					<Button onClick={handleGoBack} buttonType={BTN_TYPE.CANCEL}>
 						Повернутися назад
 					</Button>
@@ -214,7 +215,7 @@ const Board = ({ task, config }) => {
 							</Button>
 						</FlexBox>
 					)}
-				</FlexBox>
+				</FlexBox>}
 			</div>
 		</DragDropContext>
 	);

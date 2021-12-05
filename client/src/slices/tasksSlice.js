@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStudentTasksAPI, saveTaskExecutionResultAPI } from "../api/taskAPI";
+import {
+	getStudentTasksAPI,
+	getTeacherTasksAPI,
+	saveTaskExecutionResultAPI,
+} from "../api/taskAPI";
 import { handleError } from "./notificationsSlice";
 import { AVAILABLE_MODALS, toggleModal } from "./uiSlice";
 
@@ -113,6 +117,16 @@ export const getStudentTasks = () => (dispatch) => {
 			dispatch(setStudentTasks(res.data));
 		})
 		.catch((err) => handleError(err, dispatch))
+		.finally(() => dispatch(setIsLoading(false)));
+};
+
+export const getTeacherTasks = () => (dispatch) => {
+	dispatch(setIsLoading(true));
+	getTeacherTasksAPI()
+		.then((res) => {
+			dispatch(setTeacherTasks(res.data));
+		})
+		.catch((err) => handleError(err))
 		.finally(() => dispatch(setIsLoading(false)));
 };
 
