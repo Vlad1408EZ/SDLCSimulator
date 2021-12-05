@@ -54,7 +54,7 @@ export const login = (email, password) => (dispatch) => {
 			dispatch(setUser(res.data));
 			dispatch(setIsAuthencticated(true));
 		})
-		.catch((err) => handleError(err))
+		.catch((err) => handleError(err, dispatch))
 		.finally(() => dispatch(setIsLoading(false)));
 };
 

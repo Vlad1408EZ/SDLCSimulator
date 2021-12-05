@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AVAILABLE_MODALS = {
 	TASK_RESULT: "taskResult",
 	TASK_TIME_WARNING: "taskTimeWarning",
+	CREATE_USER: "createUser"
 };
 
 const initialState = {

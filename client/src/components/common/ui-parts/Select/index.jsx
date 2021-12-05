@@ -10,6 +10,7 @@ const CSelect = ({
     value,
     onChange,
     options = [],
+    variant = "standard",
     className
 }) => {
     const handleChange = (event) => {
@@ -19,7 +20,7 @@ const CSelect = ({
     return (
         <div className={className}>
             <FormControl
-                variant="standard"
+                variant={variant}
                 margin="none"
                 sx={{ minWidth: 120 }}
                 className={className}

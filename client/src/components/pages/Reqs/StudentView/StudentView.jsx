@@ -77,7 +77,7 @@ const StudentView = () => {
 			execResult={location.state?.result}
 		/>
 	) : (
-		<div className={clx(cs.width600, cs.marginAutoHorizontal)}>
+		<div className={clx(cs.width680, cs.marginAutoHorizontal)}>
 			<FlexBox alignItems="end" justifyContent="spaceBetween" className={clx(cs.marginTop50, cs.marginBottom20)}>
 				<SearchInput
 					initValue={taskSearchValue}

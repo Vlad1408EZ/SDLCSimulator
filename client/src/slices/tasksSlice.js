@@ -112,7 +112,7 @@ export const getStudentTasks = () => (dispatch) => {
 		.then((res) => {
 			dispatch(setStudentTasks(res.data));
 		})
-		.catch((err) => handleError(err))
+		.catch((err) => handleError(err, dispatch))
 		.finally(() => dispatch(setIsLoading(false)));
 };
 
@@ -143,7 +143,7 @@ export const saveTaskExecutionResult = (results) => (dispatch, getState) => {
 				})
 			);
 		})
-		.catch((err) => handleError(err))
+		.catch((err) => handleError(err, dispatch))
 		.finally(() => dispatch(setIsSavingResult(false)));
 };
 
@@ -157,6 +157,6 @@ export const findStudentTasksBySearchValue = (value) => (dispatch) => {
 		.then(res => {
 			dispatch(setStudentTasks(res.data));
 		})
-		.catch((err) => handleError(err))
+		.catch((err) => handleError(err, dispatch))
 		.finally(() => dispatch(setIsLoading(false)));
 }

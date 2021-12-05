@@ -51,15 +51,11 @@ export const enqueueSnackbar = (message, variant) => (dispatch) => {
 	})));
 };
 
-export const handleError = (err) => (dispatch) => {
-	const msg = extractErrorMessage(err);
+export const handleError = (err, dispatch) => {
+	const errData = err?.response?.data;
+	const msg = extractErrorMessage(errData);
 	if (msg) {
-		dispatch(
-			addNotification({
-				msg,
-				key: new Date().getTime() + Math.random(),
-			})
-		);
+		dispatch(enqueueSnackbar(msg, variants.ERROR));
 	}
 };
 

@@ -8,11 +8,11 @@ import {
 	Grid,
 	Clipboard,
 	User,
+	Users
 } from "react-feather";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
-// import { logout } from "../../actions/login";
 import s from "./styles.module.scss";
 import { StylesProvider } from "@mui/styles";
 import { toggleSidebar } from "../../../slices/uiSlice";
@@ -44,9 +44,7 @@ const Icon = ({ component: Component }) => (
 );
 
 const VerticalSidebar = () => {
-	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-	const user = null,
-		isAdminOrManager = true;
+	const { isAuthenticated, user } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const dispatchLogout = () => dispatch(logout());
 
@@ -64,26 +62,35 @@ const VerticalSidebar = () => {
 						<Icon component={Home} />
 						Головна
 					</LinkWrapper>
-					<LinkWrapper to="/reqs">
-						<Icon component={Clipboard} />
-						Аналіз вимог
-					</LinkWrapper>
-					<LinkWrapper to="/design">
-						<Icon component={Grid} />
-						Проектування
-					</LinkWrapper>
-					<LinkWrapper to="/modelling">
-						<Icon component={BoxIcon} />
-						Моделювання
-					</LinkWrapper>
-					<LinkWrapper to="/code">
-						<Icon component={Code} />
-						Кодування
-					</LinkWrapper>
-					<LinkWrapper to="/testing">
-						<Icon component={Activity} />
-						Тестування
-					</LinkWrapper>
+					{user?.role === "Admin" ? (
+						<LinkWrapper to="/admin">
+							<Icon component={Users} />
+							Управління користувачами
+						</LinkWrapper>
+					) : (
+						<>
+							<LinkWrapper to="/reqs">
+								<Icon component={Clipboard} />
+								Аналіз вимог
+							</LinkWrapper>
+							<LinkWrapper to="/design">
+								<Icon component={Grid} />
+								Проектування
+							</LinkWrapper>
+							<LinkWrapper to="/modelling">
+								<Icon component={BoxIcon} />
+								Моделювання
+							</LinkWrapper>
+							<LinkWrapper to="/code">
+								<Icon component={Code} />
+								Кодування
+							</LinkWrapper>
+							<LinkWrapper to="/testing">
+								<Icon component={Activity} />
+								Тестування
+							</LinkWrapper>
+						</>
+					)}
 				</div>
 
 				<div>
