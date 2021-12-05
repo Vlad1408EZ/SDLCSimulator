@@ -143,6 +143,7 @@ const CreateUserModal = () => {
                     <MultipleSelectCheckmarks
                         label="Група"
                         options={groups}
+                        multiple={userData.role === 1} //is teacher
                         onChange={(value) => handleDataChange("groups", value)}
                     />
                 </FlexBox>

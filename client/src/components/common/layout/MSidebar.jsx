@@ -63,7 +63,7 @@ const VerticalSidebar = () => {
 						Головна
 					</LinkWrapper>
 					{user?.role === "Admin" ? (
-						<LinkWrapper to="/admin/users">
+						<LinkWrapper to="/admin">
 							<Icon component={Users} />
 							Управління користувачами
 						</LinkWrapper>
