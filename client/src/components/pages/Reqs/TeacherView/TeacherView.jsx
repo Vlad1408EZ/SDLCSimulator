@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import clx from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router";
 
 import { getTeacherTasks } from "../../../../slices/tasksSlice";
 
+import Button from "../../../common/ui-parts/Button";
+import FlexBox from "../../../common/ui-parts/FlexBox";
 import Loading from "../../../common/ui-parts/Loading";
 
 import Task from "../common/Task";
@@ -31,6 +34,7 @@ const TeacherView = () => {
 		} else if (!location.search && taskId !== null) setTaskId(null);
 	}, [location.search, taskId]);
 
+    const handleCreateClick = () => navigate(`${location.pathname}/create`);
     const handleTaskClick = (id) => navigate(`?taskId=${id}`);
 
     if (isLoading) return <Loading />;
@@ -38,6 +42,17 @@ const TeacherView = () => {
     if (taskId) return <TaskView taskId={taskId}/>
 
     return <div>
+        <FlexBox
+            flexDirection="column"
+            alignItems="center"
+            className={clx(cs.marginTop20, cs.marginBottom20)}
+        >
+            {/* Hot fix */}
+            <div style={{ width: 680 }}>
+                <Button onClick={handleCreateClick}>Створити</Button>
+            </div>
+        </FlexBox>
+
         <TaskList listLength={teacherTasks.length}>
             {teacherTasks.map((task) => (
                 <Task
