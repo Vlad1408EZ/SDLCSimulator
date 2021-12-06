@@ -51,7 +51,7 @@ const TaskExecution = ({ taskId, readonly = false, execResult = null }) => {
 	}, [requiredTask, execResult]);
 
 	if (!parsedTask) return null;
-	console.log({ parsedTask })
+
 	return (
 		parsedTask && (
 			<>
