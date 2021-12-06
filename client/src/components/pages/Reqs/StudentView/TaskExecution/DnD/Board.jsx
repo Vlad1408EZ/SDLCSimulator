@@ -14,6 +14,7 @@ import {
 	resetTaskExecutionState,
 	saveTaskExecutionResult,
 } from "../../../../../../slices/tasksSlice";
+import { resetState as resetModalsState } from "../../../../../../slices/uiSlice";
 import { enqueueSnackbar, variants } from "../../../../../../slices/notificationsSlice";
 import { AVAILABLE_MODALS, toggleModal } from "../../../../../../slices/uiSlice";
 import { useTimer } from "../../../../../common/hooks/useTimer";
@@ -129,7 +130,7 @@ const Board = ({ task, config, isTeacherView = false, disableInfo = false }) => 
 				...ac,
 				[key]: valsArr.map(value => ({
 					id: `item-${Math.floor(Math.random() * 1000)}`,
-					requiredPrefix: key,
+					requiredPrefix: task.standard.StandardOrResult[key].includes(value) ? key : "Incorrect",
 					content: value
 				}))
 			}), {});
@@ -143,13 +144,16 @@ const Board = ({ task, config, isTeacherView = false, disableInfo = false }) => 
 
 	useEffect(() => {
 		dispatch(initTaskExecution(task.id));
-		task.taskTime && !config?.readonly && dispatch(toggleModal({
+		if (task.taskTime && !config?.readonly) dispatch(toggleModal({
 			[AVAILABLE_MODALS.TASK_TIME_WARNING]: {
 				open: true,
 			}
 		}));
 
-		return () => dispatch(resetTaskExecutionState());
+		return () => {
+			dispatch(resetTaskExecutionState());
+			dispatch(resetModalsState());
+		}
 	}, []);
 
 	return (

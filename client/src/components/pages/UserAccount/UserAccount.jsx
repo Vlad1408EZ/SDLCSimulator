@@ -47,7 +47,7 @@ const UserAccount = () => {
                     </p>
                 </div>
             </FlexBox>
-            {user.role !== "Admin" && (
+            {user.role === "Student" && (
                 <>
                     <h4 className={s.statsHeader}>Сатистика виконання завдань</h4>
                     <Table>
