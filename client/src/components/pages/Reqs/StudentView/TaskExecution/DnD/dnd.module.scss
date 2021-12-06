@@ -32,9 +32,12 @@
 	}
 
 	.columns {
-		margin-left: 70px;
 		flex: 1;
 		height: 600px;
+	}
+
+	.columns:not(:first-child) {
+		margin-left: 70px;
 	}
 }
 

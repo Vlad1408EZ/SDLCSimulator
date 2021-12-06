@@ -41,7 +41,7 @@ const ExecutionResultModal = () => {
 			{data && (
 				<DialogContent>
 					<p>Кількість помилок: {data.errorCount}</p>
-					<p>Результат у відсотках: {data.percentage}%</p>
+					<p>Результат у відсотках: {(data.percentage * 100).toFixed(2)}%</p>
 					<p>Заліковий бал: {data.finalMark}</p>
 				</DialogContent>
 			)}

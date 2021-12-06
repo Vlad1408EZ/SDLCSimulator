@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStudentTasksAPI, saveTaskExecutionResultAPI } from "../api/taskAPI";
+import {
+	getStudentTasksAPI,
+	getTeacherTasksAPI,
+	getTasksTypesAPI,
+	getTeacherGroupsAPI,
+	saveTaskExecutionResultAPI,
+	createTaskAPI,
+} from "../api/taskAPI";
 import { handleError } from "./notificationsSlice";
 import { AVAILABLE_MODALS, toggleModal } from "./uiSlice";
 
@@ -39,6 +46,8 @@ const initialState = {
 		isExecutionFinished: false,
 		isExecutionTimerRunning: false
 	},
+	tasksTypes: [],
+	teacherGroups: [],
 };
 
 export const tasksSlice = createSlice({
@@ -82,7 +91,16 @@ export const tasksSlice = createSlice({
 		},
 		setTaskSearchValue: (state, action) => {
 			state.taskSearchValue = action.payload;
-		}
+		},
+		setTasksTypes: (state, action) => {
+			state.tasksTypes = action.payload;
+		},
+		setTeacherGroups: (state, action) => {
+			state.teacherGroups = action.payload;
+		},
+		setTaskCreated: (state, action) => {
+			state.isTaskCreated = action.payload;
+		},
 	},
 });
 
@@ -92,6 +110,7 @@ export const {
 	setIsLoading,
 	setStudentTasks,
 	setTeacherTasks,
+	setTasksTypes,
 	initTaskExecution,
 	finishTaskExecution,
 	incrementExecutingTaskErrors,
@@ -99,7 +118,9 @@ export const {
 	setIsExecutionTimerRunning,
 	setFilterBy,
 	setFilterOption,
-	setTaskSearchValue
+	setTaskSearchValue,
+	setTeacherGroups,
+	setTaskCreated,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
@@ -113,6 +134,36 @@ export const getStudentTasks = () => (dispatch) => {
 			dispatch(setStudentTasks(res.data));
 		})
 		.catch((err) => handleError(err, dispatch))
+		.finally(() => dispatch(setIsLoading(false)));
+};
+
+export const getTeacherTasks = () => (dispatch) => {
+	dispatch(setIsLoading(true));
+	getTeacherTasksAPI()
+		.then((res) => {
+			dispatch(setTeacherTasks(res.data));
+		})
+		.catch((err) => handleError(err))
+		.finally(() => dispatch(setIsLoading(false)));
+};
+
+export const getTasksTypes = () => (dispatch) => {
+	dispatch(setIsLoading(true));
+	getTasksTypesAPI()
+		.then((res) => {
+			dispatch(setTasksTypes(res.data));
+		})
+		.catch((err) => handleError(err))
+		.finally(() => dispatch(setIsLoading(false)));
+};
+
+export const getTeacherGroups = () => (dispatch) => {
+	dispatch(setIsLoading(true));
+	getTeacherGroupsAPI()
+		.then((res) => {
+			dispatch(setTeacherGroups(res.data));
+		})
+		.catch((err) => handleError(err))
 		.finally(() => dispatch(setIsLoading(false)));
 };
 
@@ -145,6 +196,16 @@ export const saveTaskExecutionResult = (results) => (dispatch, getState) => {
 		})
 		.catch((err) => handleError(err, dispatch))
 		.finally(() => dispatch(setIsSavingResult(false)));
+};
+
+export const createTask = (task) => (dispatch) => {
+	if (!task) return;
+
+	createTaskAPI(task)
+		.then(() => {
+			dispatch(setTaskCreated(true));
+		})
+		.catch((err) => handleError(err, dispatch))
 };
 
 
