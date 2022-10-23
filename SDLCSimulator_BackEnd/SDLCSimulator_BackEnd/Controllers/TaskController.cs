@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 using SDLCSimulator_BusinessLogic.Interfaces;
 using SDLCSimulator_BusinessLogic.Models.Input;
 using SDLCSimulator_BusinessLogic.Models.Output;
+using SDLCSimulator_BusinessLogic.Helpers;
+using SDLCSimulator_Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace SDLCSimulator_BackEnd.Controllers
 {
@@ -17,10 +20,12 @@ namespace SDLCSimulator_BackEnd.Controllers
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
 
-        public TaskController(ITaskService taskService)
+        public TaskController(ITaskService taskService, ITaskRepository taskRepository)
         {
             _taskService = taskService;
+            _taskRepository = taskRepository;
         }
 
         /// <summary>
@@ -44,8 +49,47 @@ namespace SDLCSimulator_BackEnd.Controllers
                 if (!success)
                     return BadRequest("Айді студента не валідне");
 
-                var result =
-                    await _taskService.GetFilteredTasksWithTaskResultsForStudentAsync(filterInput, groupId, userId);
+                var tasks = await _taskRepository.GetTasksWithTaskResultsForStudent(groupId, userId).ToListAsync();
+                if (filterInput != null)
+                {
+                    if (filterInput.Difficulties != null)
+                    {
+                        tasks = tasks.Where(t => filterInput.Difficulties.Any(d => d == t.Difficulty)).ToList();
+                    }
+
+                    if (filterInput.Types != null)
+                    {
+                        tasks = tasks.Where(t => filterInput.Types.Any(d => d == t.Type)).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(filterInput.Topic))
+                    {
+                        tasks = tasks.Where(t => t.Topic.ToLower().StartsWith(filterInput.Topic.ToLower())).ToList();
+                    }
+                }
+
+                var result = tasks.Select(t => new StudentTasksOutputModel()
+                {
+                    Id = t.Id,
+                    Difficulty = t.Difficulty,
+                    Type = t.Type,
+                    Topic = t.Topic,
+                    Description = t.Description,
+                    Standard = t.Standard,
+                    ErrorRate = ErrorRateGetter.GetErrorRate(t.ErrorRate),
+                    MaxGrade = (int)t.MaxGrade,
+                    TaskTime = (int)t.TaskTime,
+                    TeacherFirstName = t.Teacher.FirstName,
+                    TeacherLastName = t.Teacher.LastName,
+                    StudentsTaskResults = t.TaskResults.Select(tr => new StudentTaskResultOutputModel()
+                    {
+                        Id = tr.Id,
+                        ErrorCount = tr.ErrorCount,
+                        Percentage = tr.Percentage,
+                        FinalMark = tr.FinalMark,
+                        Result = tr.Result
+                    }).ToList()
+                }).ToList();
 
                 return Ok(result);
             }

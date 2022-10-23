@@ -9,7 +9,7 @@ const CSelect = ({
     label = "",
     value,
     onChange,
-    options = [],
+    options,
     variant = "standard",
     className
 }) => {
@@ -33,7 +33,7 @@ const CSelect = ({
                     onChange={handleChange}
                     label={label}
                 >{options.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
+                    <MenuItem value={option.value}>
                         {option.label}
                     </MenuItem>
                 ))}
