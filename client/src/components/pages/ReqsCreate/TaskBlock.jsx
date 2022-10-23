@@ -14,46 +14,48 @@ const TaskBlock = ({
     onItemDelete,
     dndPlaceholder,
 }) => {
-    return <List
-        sx={{ width: "100%", bgcolor: "background.paper" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-            <ListItem
-                secondaryAction={
-                    <IconButton aria-label="delete" edge="end" size="small" onClick={() => onDelete(blockIndex)}>
-                        <DeleteIcon fontSize="inherit" />
-                    </IconButton>
-                }
-            >
-                {block.name}
-            </ListItem>
-        }
-    >
-        {block.items.map((item, itemIndex) => (
-            <Draggable index={itemIndex} draggableId={`${block.name}-${item.name}-${item.id}`} key={item.id}>
-                {(provided) => (
-                    <div
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                        style={provided.draggableProps.style}
-                    >
-                        <ListItem
-                            secondaryAction={
-                                <IconButton aria-label="delete" edge="end" size="small" onClick={() => onItemDelete({ blockIndex, itemIndex })}>
-                                    <DeleteIcon fontSize="inherit" />
-                                </IconButton>
-                            }
+    return (
+        <List
+            sx={{ width: "100%", bgcolor: "background.paper" }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader={
+                <ListItem
+                    secondaryAction={
+                        <IconButton aria-label="delete" edge="end" size="small" onClick={() => onDelete(blockIndex)}>
+                            <DeleteIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                >
+                    {block?.name}
+                </ListItem>
+            }
+        >
+            {block.items && block.items.map((item, itemIndex) => (
+                <Draggable index={itemIndex} draggableId={`${block.name}-${item.name}-${item.id}`}>
+                    {(provided) => (
+                        <div
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                            style={provided.draggableProps.style}
                         >
-                            <ListItemText primary={item.name} />
-                        </ListItem>
-                    </div>
-                )}
-            </Draggable>
-        ))}
-        {dndPlaceholder}
-    </List>;
+                            <ListItem
+                                secondaryAction={
+                                    <IconButton aria-label="delete" edge="end" size="small" onClick={() => onItemDelete({ blockIndex, itemIndex })}>
+                                        <DeleteIcon fontSize="inherit" />
+                                    </IconButton>
+                                }
+                            >
+                                <ListItemText primary={item.name} />
+                            </ListItem>
+                        </div>
+                    )}
+                </Draggable>
+            ))}
+            {dndPlaceholder}
+        </List>
+    )
 };
 
 export default TaskBlock;
