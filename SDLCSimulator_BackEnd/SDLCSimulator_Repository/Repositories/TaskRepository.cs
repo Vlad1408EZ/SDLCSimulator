@@ -16,11 +16,9 @@ namespace SDLCSimulator_Repository.Repositories
 
         public IQueryable<TaskModel> GetTasksWithTaskResultsForStudent(int groupId, int userId)
         {
-          var tasks = GetByCondition(t => t.GroupTasks.Any(gt => gt.GroupId == groupId))
+           return GetByCondition(t => t.GroupTasks.Any(gt => gt.GroupId == groupId))
                 .Include(t => t.Teacher)
-                .Include(t => t.TaskResults);
-
-            return tasks.Where(tr => tr.TaskResults.Any(tr => tr.StudentId == userId));
+                .Include(t => t.TaskResults.Where(tr => tr.StudentId == userId));
         }
 
         public IQueryable<TaskModel> GetTasksWithTaskResultsForTeacher(int userId)

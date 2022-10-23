@@ -23,18 +23,12 @@ namespace SDLCSimulator_BusinessLogic.Services
         public async Task<List<GroupOutputModel>> GetAllGroupsAsync()
         {
             var groups = await _groupRepository.GetAll().ToListAsync();
-            var result = new List<GroupOutputModel>();
 
-            foreach(var group in groups)
+            return groups.Select(w => new GroupOutputModel()
             {
-                result.Add(new GroupOutputModel()
-                {
-                    Id = group.Id,
-                    GroupName = group.GroupName
-                });
-            }
-
-            return result;
+                Id = w.Id,
+                GroupName = w.GroupName
+            }).ToList();
         }
 
         public async Task<List<GroupOutputModel>> GetTeacherGroupsAsync(int teacherId)

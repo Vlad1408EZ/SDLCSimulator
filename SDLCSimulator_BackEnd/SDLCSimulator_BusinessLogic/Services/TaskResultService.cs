@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SDLCSimulator_BusinessLogic.Helpers;
 using SDLCSimulator_BusinessLogic.Interfaces;
@@ -19,12 +17,14 @@ namespace SDLCSimulator_BusinessLogic.Services
 {
     public class TaskResultService : ITaskResultService
     {
-        private readonly IDbContextFactory<SDLCSimulatorDbContext> _contextFactory;
+        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskResultRepository _taskResultRepository;
         private IGradeCalculator _gradeCalculator;
 
-        public TaskResultService(IDbContextFactory<SDLCSimulatorDbContext> contextFactory)
+        public TaskResultService(ITaskRepository taskRepository, ITaskResultRepository taskResultRepository)
         {
-            _contextFactory = contextFactory;
+            _taskRepository = taskRepository;
+            _taskResultRepository = taskResultRepository;
         }
 
         private void SetGradeCalculator(IGradeCalculator gradeCalculator)
@@ -39,9 +39,7 @@ namespace SDLCSimulator_BusinessLogic.Services
 
         public async Task<StudentTaskResultOutputModel> SetTaskResultAsync(CreateTaskResultInput input, int userId)
         {
-            var context = _contextFactory.CreateDbContext();
-
-            var task = await context.Tasks.FirstOrDefaultAsync(t => t.Id == input.TaskId);
+            var task = await _taskRepository.GetSingleByConditionAsync(t => t.Id == input.TaskId);
             if (task == null)
             {
                 throw new InvalidOperationException($"Завдання з айді {input.TaskId} не знайдено");
@@ -59,9 +57,7 @@ namespace SDLCSimulator_BusinessLogic.Services
             }
 
             var taskResult = _gradeCalculator.CalculateTaskResult(standard, input, userId, task);
-            context.TaskResults.Add(taskResult);
-
-            await context.SaveChangesAsync();
+            await _taskResultRepository.CreateAsync(taskResult);
 
             return new StudentTaskResultOutputModel()
             {

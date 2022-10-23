@@ -23,7 +23,10 @@ const getTaskConfig = (type, readonly = false) => {
 
 const TaskExecution = ({ taskId, readonly = false, execResult = null }) => {
 	const studentTasks = useSelector((state) => state.tasks.studentTasks);
-	const requiredTask = studentTasks.find((task) => task.id === taskId);
+	const requiredTask = useMemo(
+		() => studentTasks.find((task) => task.id === taskId),
+		[taskId, studentTasks]
+	);
 
 	const parsedTask = useMemo(() => {
 		if (!requiredTask) return null;
